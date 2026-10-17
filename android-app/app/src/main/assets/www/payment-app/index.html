@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>পেমেন্ট ভেরিফিকেশন অ্যাপ | হাসিনা হোমিও কিউর</title>
+  
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="theme-color" content="#064e3b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="HHC Pay" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Google Fonts: Hind Siliguri & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+  <!-- App Shell Header -->
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand-group">
+        <div class="app-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h1 class="app-title">পেমেন্ট ভেরিফিকেশন</h1>
+          <span class="app-subtitle">হাসিনা হোমিও কিউর (ডাঃ শামসুন্নাহার স্নেহ)</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="/" class="icon-btn" title="মেইন ওয়েবসাইট" aria-label="Main Website" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
+          <i class="fa-solid fa-house"></i>
+        </a>
+        <button id="sound-toggle-btn" class="icon-btn active" title="অডিও নোটিফিকেশন" aria-label="Toggle sound">
+          <i class="fa-solid fa-bell"></i>
+        </button>
+        <button id="refresh-btn" class="icon-btn" title="রিফ্রেশ করুন" aria-label="Refresh">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Sync Status Banner -->
+    <div class="sync-bar">
+      <span class="live-dot"></span>
+      <span id="sync-text">লাইভ সিঙ্ক চালু • রিয়েল-টাইম আপডেট</span>
+      <span class="last-sync" id="last-sync-time">এখন</span>
+    </div>
+
+    <!-- Quick Metrics Counter Cards -->
+    <div class="metrics-grid">
+      <div class="metric-card total-card">
+        <span class="m-label"><i class="fa-solid fa-hand-holding-dollar"></i> মোট আদায়</span>
+        <strong class="m-val" id="stat-total-amount">৳ ০</strong>
+      </div>
+      <div class="metric-card pending-card" onclick="switchTab('pending')">
+        <span class="m-label"><i class="fa-solid fa-hourglass-half"></i> অপেক্ষমাণ</span>
+        <strong class="m-val" id="stat-pending-count">০</strong>
+      </div>
+      <div class="metric-card verified-card" onclick="switchTab('verified')">
+        <span class="m-label"><i class="fa-solid fa-circle-check"></i> অনুমোদিত</span>
+        <strong class="m-val" id="stat-verified-count">০</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Tab Bar -->
+  <nav class="app-tabs">
+    <button class="tab-btn active" data-tab="pending" onclick="switchTab('pending')">
+      <i class="fa-solid fa-clock-rotate-left"></i>
+      <span>অপেক্ষমাণ</span>
+      <span class="tab-badge" id="badge-pending">0</span>
+    </button>
+    <button class="tab-btn" data-tab="verified" onclick="switchTab('verified')">
+      <i class="fa-solid fa-check-double"></i>
+      <span>যাচাইকৃত</span>
+      <span class="tab-badge-sm" id="badge-verified">0</span>
+    </button>
+    <button class="tab-btn" data-tab="sms" onclick="switchTab('sms')">
+      <i class="fa-solid fa-comment-sms"></i>
+      <span>SMS চেকার</span>
+    </button>
+  </nav>
+
+  <!-- Main View Container -->
+  <main class="app-content">
+
+    <!-- TAB 1: PENDING VERIFICATION QUEUE -->
+    <section id="view-pending" class="tab-view active">
+      <div class="section-title-row">
+        <h2>যাচাইয়ের অপেক্ষায় থাকা ট্রানজেকশন</h2>
+        <span class="count-pill" id="pending-counter-label">০ টি নতুন</span>
+      </div>
+
+      <!-- Pending List -->
+      <div class="cards-list" id="pending-cards-container">
+        <!-- Rendered by app.js -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>ডাটা লোড হচ্ছে...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: VERIFIED HISTORY -->
+    <section id="view-verified" class="tab-view">
+      <div class="section-title-row">
+        <h2>অনুমোদিত ও সফল বুকিং সমূহ</h2>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="verified-search" placeholder="নাম, ফোন বা TrxID দিয়ে খুঁজুন..." />
+      </div>
+
+      <div class="cards-list" id="verified-cards-container">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 3: SMS MATCHER / PARSER TOOL -->
+    <section id="view-sms" class="tab-view">
+      <div class="sms-tool-card">
+        <div class="sms-header">
+          <div class="sms-icon">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <h3>বিকাশ/নগদ SMS অটো-ম্যাচ</h3>
+            <p>ফোনে আসা SMS পেস্ট করলেই ট্রানজেকশন খুঁজে যাচাই হবে</p>
+          </div>
+        </div>
+
+        <div class="sms-body">
+          <label for="sms-input">আপনার ফোনের SMS টেক্সট পেস্ট করুন:</label>
+          <textarea id="sms-input" rows="4" placeholder="যেমন: You have received Tk 500.00 from 01712345678. Fee Tk 0.00. Balance Tk 1500.00. TrxID 9J76KL2M89 at 12/10/2026 17:30"></textarea>
+
+          <!-- Quick Test Samples -->
+          <div class="sample-pills">
+            <span>টেস্ট করার নমুনা:</span>
+            <button type="button" class="sample-btn" onclick="pasteSampleSms('bkash')">bKash SMS</button>
+            <button type="button" class="sample-btn" onclick="pasteSampleSms('nagad')">Nagad SMS</button>
+          </div>
+
+          <div class="sms-actions">
+            <button type="button" class="btn btn-primary" id="btn-parse-sms" onclick="handleSmsMatch(false)">
+              <i class="fa-solid fa-magnifying-glass"></i> TrxID ও বুকিং খুঁজুন
+            </button>
+            <button type="button" class="btn btn-success" id="btn-parse-auto-verify" onclick="handleSmsMatch(true)">
+              <i class="fa-solid fa-check-circle"></i> খুঁজুন এবং সরাসরি অনুমোদন করুন
+            </button>
+          </div>
+        </div>
+
+        <!-- SMS Result Display -->
+        <div id="sms-result-box" class="sms-result-box" style="display: none;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rejection Modal -->
+  <div class="modal-overlay" id="reject-modal">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i> ট্রানজেকশন বাতিল করুন</h3>
+        <button class="modal-close" onclick="closeRejectModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">
+          টোকেন: <strong id="reject-modal-token">-</strong> | রোগী: <strong id="reject-modal-name">-</strong>
+        </p>
+        <label for="reject-reason" style="display: block; font-size: 0.85rem; margin-bottom: 0.4rem;">বাতিল করার কারণ নির্বাচন করুন:</label>
+        <select id="reject-reason" class="input-field">
+          <option value="ভুল TrxID (লেনদেন পাওয়া যায়নি)">ভুল TrxID (লেনদেন পাওয়া যায়নি)</option>
+          <option value="টাকা জমা হয়নি (অ্যাকাউন্টে ক্রেডিট নেই)">টাকা জমা হয়নি (অ্যাকাউন্টে ক্রেডিট নেই)</option>
+          <option value="ফি অপর্যাপ্ত (৳ ৫০০ এর কম পাঠানো হয়েছে)">ফি অপর্যাপ্ত (৳ ৫০০ এর কম পাঠানো হয়েছে)</option>
+          <option value="অন্যান্য কারণ">অন্যান্য কারণ</option>
+        </select>
+        <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+          <button type="button" class="btn btn-outline" style="flex: 1;" onclick="closeRejectModal()">ফিরে যান</button>
+          <button type="button" class="btn btn-danger" style="flex: 1.2;" onclick="confirmReject()">হ্যাঁ, বাতিল করুন</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="app-toast" id="app-toast"></div>
+
+  <!-- App Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

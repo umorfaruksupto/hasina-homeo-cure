@@ -46,7 +46,7 @@ export default function VerificationModal({
   isOpen,
   onClose,
   bookingData,
-  apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
+  apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
 }: VerificationModalProps) {
   const [status, setStatus] = useState<'pending' | 'verified' | 'rejected'>('pending');
   const [copiedCode, setCopiedCode] = useState(false);

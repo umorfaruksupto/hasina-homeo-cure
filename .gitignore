@@ -43,3 +43,16 @@ ehthumbs.db
 # Cloud / Hosting platforms
 .vercel
 .netlify
+
+# Android build output and caches
+.gradle/
+*/.gradle/
+*/*/.gradle/
+local.properties
+*/local.properties
+app/build/
+*/app/build/
+build/
+*/build/
+*.hprof
+

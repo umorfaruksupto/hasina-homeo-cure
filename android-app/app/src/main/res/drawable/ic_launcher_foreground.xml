@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,20 C42.95,20 34,28.95 34,40 C34,51.05 42.95,60 54,60 C65.05,60 74,51.05 74,40 C74,28.95 65.05,20 54,20 Z M54,54 C46.28,54 40,47.72 40,40 C40,32.28 46.28,26 54,26 C61.72,26 68,32.28 68,40 C68,47.72 61.72,54 54,54 Z M54,66 C39.33,66 22,73.34 22,88 L22,92 L86,92 L86,88 C86,73.34 68.67,66 54,66 Z M28.28,86 C31.14,80.7 43.19,72 54,72 C64.84,72 76.84,80.68 79.72,86 L28.28,86 Z"/>
+    <!-- Medical Cross -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M51,30 L57,30 L57,37 L64,37 L64,43 L57,43 L57,50 L51,50 L51,43 L44,43 L44,37 L51,37 Z"/>
+</vector>

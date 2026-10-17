@@ -5,15 +5,25 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DATA_DIR = path.join(__dirname, 'data');
+const isVercel = Boolean(process.env.VERCEL);
+const DATA_DIR = isVercel ? '/tmp' : path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'appointments.json');
+const INITIAL_DATA_FILE = path.join(__dirname, 'data', 'appointments.json');
 
 // Ensure data folder and file exist
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 if (!fs.existsSync(DATA_FILE)) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2), 'utf8');
+  if (fs.existsSync(INITIAL_DATA_FILE)) {
+    try {
+      fs.copyFileSync(INITIAL_DATA_FILE, DATA_FILE);
+    } catch {
+      fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2), 'utf8');
+    }
+  } else {
+    fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2), 'utf8');
+  }
 }
 
 // Middlewares
@@ -56,9 +66,9 @@ function saveAppointments(data) {
 }
 
 // -------------------------------------------------------------
-// HEALTH CHECK (For Render.com Zero-Downtime Monitoring)
+// HEALTH CHECK
 // -------------------------------------------------------------
-app.get('/health', (req, res) => {
+app.get(['/health', '/api/health'], (req, res) => {
   res.status(200).json({
     status: 'ok',
     service: 'Hasina Homeo Cure API',
@@ -67,7 +77,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
+app.get(['/', '/api'], (req, res) => {
   res.status(200).json({
     name: 'Hasina Homeo Cure Backend API',
     doctor: 'Dr. Samsunnahar Sneho (DHMS, Reg: 38275)',
@@ -382,8 +392,14 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
-// Start listening
-app.listen(PORT, () => {
-  console.log(`Hasina Homeo Cure Render-Ready Backend listening on port ${PORT}`);
-  console.log(`Healthcheck URL: http://localhost:${PORT}/health`);
-});
+// Start listening if run directly
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Hasina Homeo Cure Backend listening on port ${PORT}`);
+    console.log(`Healthcheck URL: http://localhost:${PORT}/health`);
+  });
+}
+
+module.exports = app;
+
+

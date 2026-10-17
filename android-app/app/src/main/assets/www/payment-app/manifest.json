@@ -1,0 +1,21 @@
+{
+  "name": "Hasina Homeo Pay Verify",
+  "short_name": "HHC Pay",
+  "description": "Mobile Payment Verification App for Hasina Homeo Cure",
+  "start_url": "/payment-app/",
+  "display": "standalone",
+  "background_color": "#091312",
+  "theme_color": "#064e3b",
+  "icons": [
+    {
+      "src": "/assets/images/dr-samsunnahar-sneho.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/assets/images/dr-samsunnahar-sneho.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -68,7 +68,7 @@ export default function DoctorMobileApp() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [copiedTrx, setCopiedTrx] = useState<string | null>(null);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
 
   const showToast = (msg: string) => {
     setToastMessage(msg);

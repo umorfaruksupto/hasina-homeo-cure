@@ -68,7 +68,7 @@ export default function PaymentBookingForm() {
     trxId: ''
   });
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
 
   const handleCopyNumber = (num: string, provider: string) => {
     navigator.clipboard.writeText(num);
