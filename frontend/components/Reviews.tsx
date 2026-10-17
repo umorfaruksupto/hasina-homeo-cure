@@ -1,0 +1,86 @@
+'use client';
+
+import React from 'react';
+import { clinicData } from '@/data/clinicData';
+import { Star, Quote, MapPin, CheckCircle2, Heart } from 'lucide-react';
+
+export default function Reviews() {
+  return (
+    <section id="reviews" className="py-16 sm:py-24 bg-white text-slate-900 relative overflow-hidden border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider shadow-xs">
+            <Heart className="w-3.5 h-3.5 text-emerald-600" />
+            <span>রোগীদের বাস্তব অভিজ্ঞতা</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            ১,২৮০+ সুস্থ রোগীর <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">কৃতজ্ঞতাপূর্ণ মন্তব্য</span>
+          </h2>
+
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            রোগীর আন্তরিক সুস্থতা এবং দীর্ঘদিনের কষ্ট থেকে চিরতরে আরোগ্যই আমাদের সেবার পরম প্রাপ্তি।
+          </p>
+        </div>
+
+        {/* Reviews Bento Grid (Neo-Glass Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {clinicData.testimonials.map((review, i) => (
+            <div
+              key={i}
+              className="bg-slate-50/70 hover:bg-white border border-slate-200/90 hover:border-emerald-400 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-900/5 relative"
+            >
+              <div className="absolute top-6 right-6 text-slate-300">
+                <Quote className="w-8 h-8 opacity-40" />
+              </div>
+
+              <div>
+                {/* 5 Stars with rating pill */}
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-1 text-amber-500">
+                    {[...Array(review.rating)].map((_, idx) => (
+                      <Star key={idx} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                    ৫.০ এক্সিলেন্ট
+                  </span>
+                </div>
+
+                {/* Comment */}
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+                  "{review.commentBn}"
+                </p>
+              </div>
+
+              {/* Patient Info */}
+              <div className="flex items-center justify-between pt-4 border-t border-slate-200/80">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                    {review.nameBn.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">
+                      {review.nameBn}
+                    </h4>
+                    <span className="text-xs text-slate-500 flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-emerald-600" /> {review.locationBn} জেলা
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-200">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                  <span>ভেরিফাইড</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}

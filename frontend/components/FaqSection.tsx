@@ -1,0 +1,84 @@
+'use client';
+
+import React, { useState } from 'react';
+import { clinicData } from '@/data/clinicData';
+import { ChevronDown, HelpCircle, Phone } from 'lucide-react';
+
+export default function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggle = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
+
+  return (
+    <section id="faq" className="py-16 sm:py-24 bg-slate-50 text-slate-900 relative overflow-hidden border-b border-slate-200/80">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        {/* Header */}
+        <div className="text-center mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider shadow-xs">
+            <HelpCircle className="w-3.5 h-3.5 text-emerald-600" />
+            <span>প্রায়শই জিজ্ঞাসিত প্রশ্ন</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            হোমিওপ্যাথি চিকিৎসা ও পেমেন্ট বিষয়ক <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">সাধারণ জিজ্ঞাসা</span>
+          </h2>
+
+          <p className="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+            আপনার যে কোনো সংশয় বা প্রশ্নের পরিষ্কার ও সঠিক উত্তর জেনে নিন।
+          </p>
+        </div>
+
+        {/* FAQ Accordion Neo Cards */}
+        <div className="space-y-3.5">
+          {clinicData.faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={i}
+                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                  isOpen
+                    ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
+                    : 'bg-white/80 border-slate-200/90 hover:border-slate-300 shadow-xs'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggle(i)}
+                  className="w-full p-5 sm:p-6 text-left font-bold text-slate-900 text-sm sm:text-base flex items-center justify-between gap-4 transition"
+                >
+                  <span className={isOpen ? 'text-emerald-800 font-extrabold' : 'text-slate-800'}>
+                    {faq.qBn}
+                  </span>
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                    isOpen ? 'bg-emerald-100 text-emerald-800 rotate-180' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </button>
+
+                {isOpen && (
+                  <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 animate-in fade-in duration-200 font-normal">
+                    {faq.aBn}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Still have questions CTA */}
+        <div className="mt-10 p-5 rounded-2xl bg-white border border-slate-200 text-center text-xs text-slate-600 shadow-xs">
+          <span>আরও কোনো প্রশ্ন আছে? আমাদের সরাসরি কল করতে পারেন: </span>
+          <a href="tel:+8801721515546" className="text-emerald-700 font-mono font-bold hover:underline ml-1">
+            +8801721515546
+          </a>
+          <span className="text-slate-400"> (সকাল ১০টা - রাত ১০টা)</span>
+        </div>
+
+      </div>
+    </section>
+  );
+}

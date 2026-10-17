@@ -1,0 +1,861 @@
+/* ==========================================================================
+   Hasina Homeo Cure - Mobile Payment Verification App (HHC Pay)
+   Mobile-First, Responsive, High-Contrast Modern Theme
+   ========================================================================== */
+
+:root {
+  --bg-main: #091312;
+  --bg-surface: #10221f;
+  --bg-card: #152b27;
+  --bg-card-hover: #1c3833;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(16, 185, 129, 0.3);
+
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --primary-light: #34d399;
+  --primary-glow: rgba(16, 185, 129, 0.2);
+
+  --bkash: #e2136e;
+  --nagad: #f97316;
+  --rocket: #8b5cf6;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Hind Siliguri', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(70px + var(--safe-bottom));
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   App Header & Metrics
+   ========================================================================== */
+.app-header {
+  background: linear-gradient(180deg, #062d24 0%, #0d211d 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: calc(0.75rem + var(--safe-top)) 1rem 0.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.app-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.app-subtitle {
+  font-size: 0.75rem;
+  color: #a7f3d0;
+  display: block;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn.active {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+.sync-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #6ee7b7;
+  padding: 0.25rem 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  display: inline-block;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.last-sync {
+  margin-left: auto;
+  color: var(--text-dim);
+}
+
+/* Metrics Row */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.metric-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.metric-card:active {
+  transform: scale(0.97);
+}
+
+.m-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.m-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.total-card .m-val { color: #34d399; }
+.pending-card { border-color: rgba(245, 158, 11, 0.3); }
+.pending-card .m-val { color: #fbbf24; }
+.verified-card { border-color: rgba(16, 185, 129, 0.3); }
+.verified-card .m-val { color: #34d399; }
+
+/* ==========================================================================
+   Tabs Navigation
+   ========================================================================== */
+.app-tabs {
+  display: flex;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.25rem 0.5rem;
+  position: sticky;
+  top: 132px;
+  z-index: 40;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.65rem 0.25rem;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  color: var(--primary-light);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 -2px 8px var(--primary-glow);
+}
+
+.tab-badge {
+  background: #f59e0b;
+  color: #000;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.1rem 0.45rem;
+  border-radius: 12px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.tab-badge-sm {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+}
+
+/* ==========================================================================
+   Content & Views
+   ========================================================================== */
+.app-content {
+  flex: 1;
+  padding: 0.85rem 1rem;
+}
+
+.tab-view {
+  display: none;
+}
+
+.tab-view.active {
+  display: block;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.section-title-row h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.count-pill {
+  font-size: 0.75rem;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.15);
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  margin-bottom: 0.85rem;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.search-box i {
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   Cards List & Transaction Cards
+   ========================================================================== */
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tx-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease, transform 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tx-card.pending {
+  border-left: 4px solid #f59e0b;
+}
+
+.tx-card.verified {
+  border-left: 4px solid #10b981;
+}
+
+.tx-card.rejected {
+  border-left: 4px solid #ef4444;
+  opacity: 0.8;
+}
+
+/* Card Header */
+.tx-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.55rem;
+}
+
+.tx-token-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tx-token {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+.time-ago {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  display: block;
+}
+
+.tx-amount-badge {
+  text-align: right;
+}
+
+.tx-amount {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #34d399;
+  display: block;
+}
+
+.status-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.status-tag.pending {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.status-tag.verified {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.status-tag.rejected {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Patient Info Body */
+.tx-patient-info {
+  margin-bottom: 0.75rem;
+}
+
+.patient-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.patient-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.patient-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.patient-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.4rem;
+}
+
+.patient-details-row span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.problem-badge {
+  font-size: 0.78rem;
+  color: #a7f3d0;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+/* Payment Highlight Box */
+.tx-payment-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.pay-provider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.gateway-chip {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.gateway-chip.bKash { background: var(--bkash); }
+.gateway-chip.Nagad { background: var(--nagad); }
+.gateway-chip.Rocket { background: var(--rocket); }
+
+.sender-phone {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-family: monospace;
+}
+
+.trx-id-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+}
+
+.trx-id-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.trx-id-val {
+  font-family: 'Courier New', monospace;
+  font-weight: 800;
+  color: #38bdf8;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+.btn-copy-sm {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.8rem;
+  transition: color 0.15s ease;
+}
+
+.btn-copy-sm:active {
+  color: #fff;
+}
+
+/* Action Buttons Grid */
+.tx-actions-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0.45rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-approve {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.btn-reject {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.btn-wa {
+  background: #25d366;
+  color: #fff;
+  grid-column: 1 / -1;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+.btn-call {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-success {
+  background: #059669;
+  color: #fff;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SMS Matcher Tool
+   ========================================================================== */
+.sms-tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.sms-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.sms-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.sms-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sms-header p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.sms-body label {
+  display: block;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+}
+
+.sms-body textarea {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.sms-body textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.sample-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.sample-pills span {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.sample-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sample-btn:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sms-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sms-result-box {
+  margin-top: 1rem;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+/* ==========================================================================
+   Modal Sheet
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg-surface);
+  border-radius: 20px 20px 0 0;
+  border-top: 1px solid var(--border-color);
+  padding: 1.25rem 1.25rem calc(1.25rem + var(--safe-bottom));
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.25s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.input-field {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Toast & Empty State
+   ========================================================================== */
+.app-toast {
+  position: fixed;
+  bottom: calc(80px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(50px);
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  padding: 0.65rem 1.15rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 120;
+}
+
+.app-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-dim);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--text-dim);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(16, 185, 129, 0.2);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

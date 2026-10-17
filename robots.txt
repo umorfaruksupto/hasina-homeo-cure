@@ -1,0 +1,7 @@
+# Hasina Homeo Cure - Robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /payment-app/
+
+Sitemap: https://hasinahomeocure.com/sitemap.xml
