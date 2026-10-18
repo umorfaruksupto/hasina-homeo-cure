@@ -10,18 +10,33 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#0d7a57",
-          hover: "#085a40",
-          dark: "#053b2a",
-          light: "#e8f7f0",
+          DEFAULT: "#047857",
+          hover: "#065f46",
+          dark: "#022c22",
+          light: "#ecfdf5",
         },
         wa: {
           DEFAULT: "#25d366",
-          hover: "#1ebc57",
+          hover: "#20ba5a",
+        },
+        apple: {
+          bg: "#f5f5f7",
+          surface: "#ffffff",
+          text: "#1d1d1f",
+          secondary: "#6e6e73",
+          border: "rgba(0, 0, 0, 0.08)",
         }
       },
       fontFamily: {
-        sans: ["var(--font-hind)", "Inter", "sans-serif"],
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "SF Pro Display",
+          "SF Pro Text",
+          "var(--font-hind)",
+          "Inter",
+          "sans-serif"
+        ],
       },
     },
   },
