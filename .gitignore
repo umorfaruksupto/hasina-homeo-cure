@@ -56,3 +56,6 @@ build/
 */build/
 *.hprof
 
+# Skills and local tools
+apple-design-skill/
+

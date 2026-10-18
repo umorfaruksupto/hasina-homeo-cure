@@ -212,14 +212,38 @@ export const clinicConfig = {
   regNoEn: "38275",
   clinicNameBn: "হাসিনা হোমিও কিউর",
   clinicNameEn: "Hasina Homeo Cure",
+  taglineBn: "আধুনিক বিজ্ঞানসম্মত বিশুদ্ধ হোমিও চিকিৎসা কেন্দ্র",
+  taglineEn: "Modern Scientific Pure Homeopathic Treatment Center",
   phone: "+8801721515546",
   cleanPhone: "8801721515546",
   bkashNumber: "01721515546",
   nagadNumber: "01721515546",
   rocketNumber: "01721515546",
   consultationFee: 500,
-  addressBn: "রোড #০৪, সেক্টর #১১, উত্তরা, ঢাকা-১২৩০, বাংলাদেশ",
-  addressEn: "Road #04, Sector #11, Uttara, Dhaka-1230, Bangladesh",
-  hoursBn: "প্রতিদিন সকাল ১০:০০ - রাত ১০:০০",
+  addressBn: "ঢাকা: বাসা নং ১৬, রোড ৩, মিরপুর ১২, পল্লবী | যশোর: মোল্লাপাড়া সরকারি প্রাইমারি স্কুলের পূর্ব পার্শ্বে",
+  addressEn: "Dhaka: House 16, Road 3, Mirpur-12, Pallabi | Jashore: East side of Mollapara Govt Primary School",
+  hoursBn: "যশোর: রবি-বৃহস্পতি | ঢাকা: শুক্র ও শনি",
+  chambers: {
+    jashore: {
+      nameBn: "যশোর চেম্বার",
+      nameEn: "Jashore Chamber",
+      addressBn: "মোল্লাপাড়া সরকারি প্রাইমারি স্কুলের পূর্ব পার্শ্বে, যশোর",
+      addressEn: "East side of Mollapara Govt. Primary School, Jashore",
+      daysBn: "রবিবার থেকে বৃহস্পতিবার",
+      daysEn: "Sunday to Thursday",
+      hoursBn: "সকাল ১০:০০ - দুপুর ১২:০০ এবং বিকাল ৪:০০ - রাত ৯:০০",
+      hoursEn: "10:00 AM - 12:00 PM & 04:00 PM - 09:00 PM"
+    },
+    dhaka: {
+      nameBn: "ঢাকা চেম্বার",
+      nameEn: "Dhaka Chamber",
+      addressBn: "বাসা নং ১৬, রোড নং ৩, মিরপুর ১২, পল্লবী, ঢাকা (মোল্লা মসজিদের পাশে)",
+      addressEn: "House #16, Road #3, Mirpur-12, Pallabi, Dhaka (Beside Molla Mosque)",
+      daysBn: "শুক্রবার ও শনিবার",
+      daysEn: "Friday and Saturday",
+      hoursBn: "সকাল ১০:০০ টা থেকে রাত ৮:০০ টা",
+      hoursEn: "10:00 AM to 08:00 PM"
+    }
+  },
   email: "support@hasinahomeocure.com"
 };
