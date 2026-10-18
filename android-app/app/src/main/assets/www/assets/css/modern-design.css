@@ -1,1091 +1,607 @@
-/* =========================================================
-   Modern Design Enhancement Layer
-   Glassmorphism • Neomorphism • Ambient Glow • Premium UI
-   Hasina Homeo Cure — Modern Design Override
-   ========================================================= */
+/* ==========================================================================
+   Apple Human Interface Guidelines (HIG) Design System Override
+   Crafted for Hasina Homeo Cure (হাসিনা হোমিও কিউর)
+   Grounded in Apple HIG 2026: Liquid Glass, Dynamic Typography, & Clean Surfaces
+   ========================================================================== */
 
-/* =========================================================
-   0. CSS Custom Properties — Modern Design Tokens
-   ========================================================= */
+/* --------------------------------------------------------------------------
+   0. Apple Design Tokens & Typography
+   -------------------------------------------------------------------------- */
 :root {
-  /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.18);
-  --glass-bg-strong: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.38);
-  --glass-blur: blur(20px);
-  --glass-blur-sm: blur(10px);
-  --glass-shadow: 0 8px 32px 0 rgba(13, 122, 87, 0.12);
+  /* Apple System Palette */
+  --apple-bg: #f8fafc;
+  --apple-surface: #ffffff;
+  --apple-card: #ffffff;
+  --apple-border: rgba(226, 232, 240, 0.85);
+  --apple-border-hairline: rgba(0, 0, 0, 0.08);
+  
+  /* Apple Accent Color (Judicious use as per branding.md) */
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-dark: #064e3b;
+  --primary-light: #ecfdf5;
+  --primary-gradient: #059669;
+  --grad-emerald: #059669;
 
-  /* Neomorphism (light surface) */
-  --neo-bg: #eef5f1;
-  --neo-shadow-out: 6px 6px 14px rgba(13, 122, 87, 0.10), -6px -6px 14px rgba(255,255,255,0.85);
-  --neo-shadow-in: inset 4px 4px 10px rgba(13, 122, 87, 0.09), inset -4px -4px 10px rgba(255,255,255,0.9);
-  --neo-shadow-hover: 4px 4px 10px rgba(13, 122, 87, 0.14), -4px -4px 10px rgba(255,255,255,0.9);
+  /* Apple Liquid Glass (Functional Floating Layer Only) */
+  --liquid-glass-bg: rgba(255, 255, 255, 0.82);
+  --liquid-glass-blur: blur(24px) saturate(180%);
+  --liquid-glass-border: rgba(255, 255, 255, 0.65);
+  --liquid-glass-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.08);
 
-  /* Gradient palette */
-  --grad-emerald: linear-gradient(135deg, #0d7a57 0%, #059669 60%, #10b981 100%);
-  --grad-ocean: linear-gradient(135deg, #0d7a57 0%, #0284c7 100%);
-  --grad-aurora: linear-gradient(135deg, #065f46 0%, #047857 40%, #10b981 80%, #34d399 100%);
-  --grad-glass-green: linear-gradient(135deg, rgba(16,185,129,0.22) 0%, rgba(5,150,105,0.10) 100%);
+  /* Apple Elevation (Content Layer) */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 32px -8px rgba(15, 23, 42, 0.09);
+  --shadow-xl: 0 20px 48px -12px rgba(15, 23, 42, 0.12);
 
-  /* Glow / Neon */
-  --glow-primary: 0 0 20px rgba(13, 122, 87, 0.35), 0 0 60px rgba(13, 122, 87, 0.12);
-  --glow-soft: 0 0 15px rgba(16, 185, 129, 0.2);
+  /* Apple Radii */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
 
-  /* Depth shadows */
-  --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.14), 0 10px 20px -8px rgba(13,122,87,0.08);
-  --shadow-2xl: 0 40px 80px -20px rgba(0,0,0,0.18), 0 16px 32px -12px rgba(13,122,87,0.10);
-
-  /* Border radius — rounder modern style */
-  --radius-xl: 28px;
-  --radius-2xl: 36px;
-
-  /* Smooth transitions */
-  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-spring: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Apple Fluid Spring Physics */
+  --spring-timing: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* =========================================================
-   1. Body — Ambient Background Mesh
-   ========================================================= */
+/* --------------------------------------------------------------------------
+   1. Base Body & Typography (typography.md)
+   -------------------------------------------------------------------------- */
 body {
-  background: #f4faf7;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(16,185,129,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(2,132,199,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(13,122,87,0.03) 0%, transparent 70%);
-  background-attachment: fixed;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", "Hind Siliguri", system-ui, sans-serif !important;
+  background-color: var(--apple-bg) !important;
+  color: #0f172a !important;
+  line-height: 1.6 !important;
+  letter-spacing: -0.011em !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
-/* =========================================================
-   2. Top Bar — Glassmorphism Strip
-   ========================================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Inter", "Hind Siliguri", system-ui, sans-serif !important;
+  color: #0f172a !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 700 !important;
+}
+
+/* Disable tacky animations and glowing blobs */
+.ambient-glow,
+.ambient-glow-1,
+.ambient-glow-2,
+.doctor-glow-backdrop {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Top Bar & Sticky Liquid Glass Navbar (liquid-glass.md & toolbars.md)
+   -------------------------------------------------------------------------- */
 .top-bar {
-  background: linear-gradient(90deg, #032b1e 0%, #054e36 50%, #032b1e 100%);
-  backdrop-filter: var(--glass-blur-sm);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  position: relative;
-  overflow: hidden;
+  background: #064e3b !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ecfdf5 !important;
+  padding: 8px 0 !important;
+  font-size: 0.82rem !important;
 }
 
-.top-bar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(16,185,129,0.08) 50%, transparent 100%);
-  pointer-events: none;
+.top-bar a {
+  color: #ffffff !important;
+  font-weight: 600 !important;
 }
 
 .badge-reg {
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.22);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  transition: var(--transition-smooth);
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: var(--radius-full) !important;
+  padding: 4px 12px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-.badge-reg:hover {
-  background: rgba(255,255,255,0.2);
-  border-color: rgba(255,255,255,0.35);
-}
-
-/* =========================================================
-   3. Navbar — Glassmorphism Sticky Bar
-   ========================================================= */
 .navbar {
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.5) !important;
-  box-shadow: 0 4px 24px rgba(13,122,87,0.06), 0 1px 0 rgba(255,255,255,0.8) inset !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03) !important;
+  padding: 12px 0 !important;
   transition: var(--transition-smooth) !important;
 }
 
-.navbar.scrolled {
-  background: rgba(255, 255, 255, 0.92) !important;
-  box-shadow: 0 8px 32px rgba(13,122,87,0.10), 0 1px 0 rgba(255,255,255,0.9) inset !important;
-}
-
-/* Brand Icon — Neomorphic + Glow */
 .brand-icon {
-  background: var(--grad-emerald) !important;
+  background: #059669 !important;
   border-radius: 14px !important;
-  box-shadow: var(--glow-soft), 4px 4px 10px rgba(13,122,87,0.15), -2px -2px 8px rgba(255,255,255,0.6) !important;
-  transition: var(--transition-spring) !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25) !important;
+  color: #ffffff !important;
+  transition: var(--transition-smooth) !important;
 }
 
-.brand-icon:hover {
-  box-shadow: var(--glow-primary), 4px 4px 14px rgba(13,122,87,0.2), -2px -2px 8px rgba(255,255,255,0.7) !important;
-  transform: scale(1.05) rotate(-3deg);
+.brand-text h2 {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
 }
 
-/* Nav Link Hover — Modern Underline Glow */
+.brand-text span {
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: #059669 !important;
+}
+
+.nav-link {
+  color: #334155 !important;
+  font-weight: 500 !important;
+  font-size: 0.92rem !important;
+  padding: 8px 14px !important;
+  border-radius: var(--radius-sm) !important;
+  transition: var(--transition-smooth) !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #059669 !important;
+  background: rgba(5, 150, 105, 0.06) !important;
+}
+
 .nav-link::after {
-  background: var(--grad-emerald);
-  height: 2px;
-  border-radius: 2px;
-  box-shadow: 0 0 8px rgba(13,122,87,0.4);
+  display: none !important;
 }
 
-/* Nav Actions Button */
-.lang-toggle {
-  background: rgba(248,250,252,0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(255,255,255,0.6) !important;
-  box-shadow: 2px 2px 6px rgba(13,122,87,0.08), -2px -2px 6px rgba(255,255,255,0.8) !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.lang-toggle:hover {
-  box-shadow: 3px 3px 8px rgba(13,122,87,0.12), -3px -3px 8px rgba(255,255,255,0.9), 0 0 12px rgba(13,122,87,0.1) !important;
-  background: rgba(240,253,244,0.95) !important;
-}
-
-/* Mobile Nav Toggle — Neomorphic */
-.mobile-nav-toggle {
-  background: rgba(248,250,252,0.9) !important;
-  border: 1px solid rgba(255,255,255,0.7) !important;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.07), -3px -3px 8px rgba(255,255,255,0.9) !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.mobile-nav-toggle:hover {
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.1), -2px -2px 6px rgba(255,255,255,0.9), 0 0 10px rgba(13,122,87,0.1) !important;
-}
-
-/* Mobile Drawer — Glassmorphism */
-.mobile-drawer {
-  background: rgba(255,255,255,0.9) !important;
-  backdrop-filter: blur(30px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
-  border-left: 1px solid rgba(255,255,255,0.6) !important;
-  box-shadow: -20px 0 60px rgba(0,0,0,0.12) !important;
-}
-
-.drawer-header {
-  background: rgba(248,252,250,0.8) !important;
-  backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.5) !important;
-}
-
-.drawer-nav-item a:hover, .drawer-nav-item a.active {
-  background: rgba(240,253,244,0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(167,243,208,0.4) !important;
-  box-shadow: 0 2px 8px rgba(13,122,87,0.07) !important;
-}
-
-.drawer-cta-box {
-  background: rgba(240,253,244,0.7) !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(187,247,208,0.5) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 4px 16px rgba(13,122,87,0.08) !important;
-}
-
-/* =========================================================
-   4. Buttons — Modern Elevated + Glow Style
-   ========================================================= */
+/* --------------------------------------------------------------------------
+   3. Apple Button System (buttons.md)
+   No jumping, no neon glow, clean touch targets, fluid spring feedback
+   -------------------------------------------------------------------------- */
 .btn {
-  position: relative;
-  overflow: hidden;
-  border-radius: 14px !important;
-  letter-spacing: 0.02em;
-  transition: var(--transition-smooth) !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-md) !important;
+  min-height: 44px !important;
+  padding: 10px 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  letter-spacing: normal !important;
 }
 
-/* Shimmer sweep effect on all buttons */
 .btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
-  transition: left 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
+  display: none !important; /* Remove tacky shimmer sweep */
 }
 
-.btn:hover::before {
-  left: 160%;
+.btn:active {
+  transform: scale(0.98) !important;
 }
 
+/* Apple Prominent Button Style */
 .btn-primary {
-  background: var(--grad-emerald) !important;
-  box-shadow: 0 4px 16px rgba(13,122,87,0.32), 0 2px 4px rgba(0,0,0,0.1) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
+  background: #059669 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.24) !important;
 }
 
 .btn-primary:hover {
-  box-shadow: var(--glow-primary), 0 8px 24px rgba(13,122,87,0.4) !important;
-  transform: translateY(-3px) scale(1.02) !important;
+  background: #047857 !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.32) !important;
+  transform: translateY(-1px) !important;
 }
 
-.btn-outline {
-  background: rgba(255,255,255,0.7) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1.5px solid var(--primary) !important;
-  box-shadow: 2px 2px 8px rgba(13,122,87,0.08), -2px -2px 8px rgba(255,255,255,0.8) !important;
+/* Apple Secondary Buttons (Restrained, Monochrome) */
+.btn-secondary,
+.btn-outline,
+.btn-phone {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
 }
 
-.btn-outline:hover {
-  background: var(--primary) !important;
-  color: #ffffff !important;
-  box-shadow: var(--glow-soft), 0 6px 18px rgba(13,122,87,0.3) !important;
-  transform: translateY(-2px) !important;
+.btn-secondary:hover,
+.btn-outline:hover,
+.btn-phone:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #059669 !important;
+  transform: translateY(-1px) !important;
 }
 
 .btn-whatsapp {
-  background: linear-gradient(135deg, #25d366 0%, #1da851 100%) !important;
-  box-shadow: 0 4px 16px rgba(37,211,102,0.35), 0 2px 4px rgba(0,0,0,0.08) !important;
-  border: 1px solid rgba(255,255,255,0.2) !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25) !important;
 }
 
 .btn-whatsapp:hover {
-  box-shadow: 0 0 20px rgba(37,211,102,0.45), 0 8px 24px rgba(37,211,102,0.4) !important;
-  transform: translateY(-3px) scale(1.02) !important;
+  background: #20ba5a !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+  transform: translateY(-1px) !important;
 }
 
-.btn-phone {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-  box-shadow: 0 4px 16px rgba(2,132,199,0.32), 0 2px 4px rgba(0,0,0,0.08) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
+/* --------------------------------------------------------------------------
+   4. Apple Content Hierarchy: Cards, Bento & Sections (materials.md)
+   No muddy neumorphism; clean 1px borders, subtle ambient shadows
+   -------------------------------------------------------------------------- */
+.card,
+.service-card,
+.stat-item,
+.about-feat-item,
+.review-card,
+.chamber-card,
+.district-card,
+.faq-item {
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.btn-phone:hover {
-  box-shadow: 0 0 20px rgba(2,132,199,0.45), 0 8px 24px rgba(2,132,199,0.38) !important;
-  transform: translateY(-3px) scale(1.02) !important;
-}
-
-/* =========================================================
-   5. Hero Section — Premium Glassmorphic Layout
-   ========================================================= */
-.hero {
-  background:
-    radial-gradient(120% 80% at 50% 0%, #dff7ee 0%, #f0fdf4 40%, #f8fafc 75%, #ffffff 100%) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Animated mesh background */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(16,185,129,0.12) 0%, transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(2,132,199,0.06) 0%, transparent 40%),
-    radial-gradient(circle at 60% 10%, rgba(13,122,87,0.08) 0%, transparent 35%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Ambient glow orbs — enhanced */
-.ambient-glow-1 {
-  background: rgba(16, 185, 129, 0.28) !important;
-  filter: blur(100px) !important;
-  animation: driftOrb1 12s ease-in-out infinite;
-}
-
-.ambient-glow-2 {
-  background: rgba(4, 120, 87, 0.22) !important;
-  filter: blur(110px) !important;
-  animation: driftOrb2 14s ease-in-out infinite;
-}
-
-@keyframes driftOrb1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(20px, -30px) scale(1.05); }
-  66% { transform: translate(-15px, 20px) scale(0.95); }
-}
-
-@keyframes driftOrb2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40% { transform: translate(-25px, 15px) scale(1.08); }
-  70% { transform: translate(18px, -20px) scale(0.96); }
-}
-
-/* Trust Badge — Glassmorphic Pill */
-.trust-badge {
-  background: rgba(255,255,255,0.75) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(167,243,208,0.5) !important;
-  box-shadow: 0 4px 14px rgba(13,122,87,0.10), inset 0 1px 0 rgba(255,255,255,0.8) !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.trust-badge:hover {
-  box-shadow: 0 6px 20px rgba(13,122,87,0.15), inset 0 1px 0 rgba(255,255,255,0.9) !important;
-  transform: translateY(-1px);
-}
-
-/* Live Status Pill — Glassmorphic */
-.live-status-pill {
-  background: rgba(236,253,245,0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(110,231,183,0.5) !important;
-  box-shadow: 0 3px 10px rgba(13,122,87,0.08) !important;
-}
-
-/* Hero Doctor Badge — Neomorphic Card */
-.hero-doctor-badge {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255,255,255,0.7) !important;
-  border-left: 4px solid var(--primary) !important;
-  box-shadow: 6px 6px 16px rgba(13,122,87,0.10), -4px -4px 12px rgba(255,255,255,0.9), 0 4px 24px rgba(13,122,87,0.06) !important;
-  border-radius: 18px !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.hero-doctor-badge:hover {
-  box-shadow: 8px 8px 20px rgba(13,122,87,0.13), -4px -4px 12px rgba(255,255,255,0.95), 0 0 20px rgba(13,122,87,0.1) !important;
-  transform: translateY(-2px);
-}
-
-/* Stats Row — Glassmorphic + Neomorphic Cards */
-.stat-item {
-  background: rgba(255,255,255,0.78) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255,255,255,0.7) !important;
-  box-shadow: 4px 4px 12px rgba(13,122,87,0.07), -4px -4px 12px rgba(255,255,255,0.9) !important;
-  border-radius: 16px !important;
-  transition: var(--transition-spring) !important;
-}
-
-.stat-item:hover {
-  box-shadow: 6px 6px 18px rgba(13,122,87,0.13), -4px -4px 12px rgba(255,255,255,0.95), 0 0 16px rgba(13,122,87,0.08) !important;
-  transform: translateY(-4px) scale(1.02) !important;
-  border-color: rgba(167,243,208,0.6) !important;
-}
-
-.stat-icon-wrap {
-  background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%) !important;
-  border: 1px solid rgba(167,243,208,0.4) !important;
-  box-shadow: 3px 3px 8px rgba(13,122,87,0.10), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border-radius: 12px !important;
-}
-
-/* Doctor Image Box — Glassmorphic Frame */
-.doctor-img-box {
-  border: 5px solid rgba(255,255,255,0.9) !important;
-  box-shadow:
-    0 30px 60px -15px rgba(13,122,87,0.38),
-    0 0 0 1px rgba(167,243,208,0.3),
-    inset 0 2px 4px rgba(255,255,255,0.5) !important;
-  border-radius: 30px !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.doctor-img-box:hover {
-  box-shadow:
-    0 40px 80px -20px rgba(13,122,87,0.45),
-    0 0 0 1px rgba(167,243,208,0.5),
-    0 0 40px rgba(13,122,87,0.15),
-    inset 0 2px 4px rgba(255,255,255,0.5) !important;
-}
-
-/* Doctor Glow Backdrop — enhanced */
-.doctor-glow-backdrop {
-  background: radial-gradient(ellipse at center, rgba(16,185,129,0.35) 0%, rgba(5,150,105,0.15) 50%, transparent 70%) !important;
-  filter: blur(25px) !important;
-}
-
-/* Floating Pills — Premium Glass */
-.doctor-rating-pill,
-.doctor-exp-pill {
-  background: rgba(255,255,255,0.88) !important;
-  backdrop-filter: blur(16px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  border: 1px solid rgba(255,255,255,0.85) !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9) !important;
-  border-radius: 22px !important;
-}
-
-/* Doctor Floating Badge — Glassmorphic Identity Card */
-.doctor-floating-badge {
-  background: rgba(255,255,255,0.88) !important;
-  backdrop-filter: blur(20px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
-  border: 1px solid rgba(255,255,255,0.8) !important;
-  box-shadow: 0 20px 48px -10px rgba(13,122,87,0.25), inset 0 1px 0 rgba(255,255,255,0.9) !important;
-  border-radius: 20px !important;
-}
-
-/* =========================================================
-   6. Section Styles — Modern Cards
-   ========================================================= */
-.section-alt {
-  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%) !important;
-  position: relative;
-}
-
-.section-alt::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(16,185,129,0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* Section Subtitle — Glassmorphic Pill */
-.section-subtitle {
-  background: rgba(240,253,244,0.9) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(167,243,208,0.5) !important;
-  box-shadow: 0 2px 8px rgba(13,122,87,0.08) !important;
-  border-radius: 999px !important;
-}
-
-/* =========================================================
-   7. About Features — Neomorphic Cards
-   ========================================================= */
-.about-feat-item {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  box-shadow: 5px 5px 14px rgba(13,122,87,0.08), -5px -5px 14px rgba(255,255,255,0.92) !important;
-  border-radius: 18px !important;
-  transition: var(--transition-spring) !important;
-}
-
-.about-feat-item:hover {
-  box-shadow: 8px 8px 20px rgba(13,122,87,0.13), -5px -5px 14px rgba(255,255,255,0.95), 0 0 24px rgba(13,122,87,0.08) !important;
-  transform: translateY(-5px) !important;
-  border-color: rgba(167,243,208,0.5) !important;
-}
-
-.about-feat-icon {
-  background: linear-gradient(135deg, rgba(236,253,245,1) 0%, rgba(209,250,229,1) 100%) !important;
-  box-shadow: 3px 3px 8px rgba(13,122,87,0.10), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border: 1px solid rgba(187,247,208,0.6) !important;
-  border-radius: 14px !important;
-}
-
-.about-feat-item:hover .about-feat-icon {
-  background: var(--grad-emerald) !important;
-  box-shadow: 0 0 16px rgba(13,122,87,0.3) !important;
-}
-
-/* =========================================================
-   8. Services — Glassmorphic Cards
-   ========================================================= */
-.service-card {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  border-top: 3px solid transparent !important;
-  box-shadow: 5px 5px 16px rgba(0,0,0,0.05), -4px -4px 12px rgba(255,255,255,0.9) !important;
-  border-radius: 20px !important;
-  transition: var(--transition-spring) !important;
-}
-
-.service-card:hover {
-  box-shadow: 0 20px 48px -8px rgba(13,122,87,0.18), -4px -4px 12px rgba(255,255,255,0.95) !important;
-  transform: translateY(-8px) !important;
-  border-color: rgba(255,255,255,0.9) !important;
-  border-top-color: var(--primary) !important;
-}
-
-.service-icon-box {
-  background: linear-gradient(135deg, rgba(240,253,244,1) 0%, rgba(220,252,231,1) 100%) !important;
-  border: 1px solid rgba(187,247,208,0.5) !important;
-  box-shadow: 3px 3px 10px rgba(13,122,87,0.10), -2px -2px 8px rgba(255,255,255,0.9) !important;
-  border-radius: 16px !important;
-}
-
-.service-card:hover .service-icon-box {
-  background: var(--grad-emerald) !important;
-  color: #fff !important;
-  box-shadow: 0 0 20px rgba(13,122,87,0.35) !important;
-}
-
-.service-badge {
-  background: rgba(236,253,245,0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(167,243,208,0.5) !important;
-  box-shadow: 0 2px 6px rgba(13,122,87,0.06) !important;
-}
-
-.service-btn-book {
-  background: rgba(240,253,244,0.9) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(187,247,208,0.6) !important;
-  box-shadow: 2px 2px 6px rgba(13,122,87,0.08), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border-radius: 14px !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.service-btn-book:hover {
-  background: var(--grad-emerald) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 18px rgba(13,122,87,0.3), 0 0 10px rgba(13,122,87,0.15) !important;
+.card:hover,
+.service-card:hover,
+.stat-item:hover,
+.about-feat-item:hover,
+.review-card:hover,
+.chamber-card:hover,
+.district-card:hover {
+  border-color: rgba(5, 150, 105, 0.35) !important;
+  box-shadow: var(--shadow-md) !important;
   transform: translateY(-2px) !important;
 }
 
-/* Filter Bar Pills — Glassmorphic */
-.filter-btn {
-  background: rgba(255,255,255,0.75) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(255,255,255,0.7) !important;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.06), -2px -2px 6px rgba(255,255,255,0.85) !important;
-  border-radius: 999px !important;
-  transition: var(--transition-smooth) !important;
+/* Hero Section Refinements */
+.hero {
+  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(16, 185, 129, 0.08) 0%, transparent 60%), #f8fafc !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  padding: 50px 0 70px !important;
 }
 
-.filter-btn:hover, .filter-btn.active {
-  background: var(--grad-emerald) !important;
-  border-color: transparent !important;
-  box-shadow: 0 6px 18px rgba(13,122,87,0.28), 0 0 10px rgba(13,122,87,0.12) !important;
-  transform: translateY(-1px);
+.hero::before {
+  display: none !important;
 }
 
-/* Search Box — Glassmorphic */
-.services-search-box input {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1.5px solid rgba(255,255,255,0.7) !important;
-  box-shadow: 4px 4px 12px rgba(0,0,0,0.05), -3px -3px 10px rgba(255,255,255,0.9) !important;
-  border-radius: 999px !important;
+.hero-title {
+  font-size: 2.8rem !important;
+  line-height: 1.18 !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.03em !important;
 }
 
-.services-search-box input:focus {
-  border-color: var(--primary) !important;
-  box-shadow: 0 0 0 4px rgba(13,122,87,0.12), 4px 4px 12px rgba(0,0,0,0.05), -3px -3px 10px rgba(255,255,255,0.9) !important;
+.hero-title span {
+  color: #059669 !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
 }
 
-/* =========================================================
-   9. Gallery Cards — Modern Glass Frames
-   ========================================================= */
-.gallery-card {
-  border-radius: 20px !important;
-  box-shadow: 5px 5px 16px rgba(0,0,0,0.08), -3px -3px 10px rgba(255,255,255,0.6), 0 0 0 1px rgba(255,255,255,0.3) !important;
-  transition: var(--transition-spring) !important;
-  overflow: hidden;
+.hero-desc {
+  font-size: 1.05rem !important;
+  color: #475569 !important;
+  line-height: 1.65 !important;
+  margin-top: 14px !important;
 }
 
-.gallery-card:hover {
-  box-shadow: 0 24px 50px -12px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.5) !important;
-  transform: translateY(-6px) scale(1.01) !important;
+/* Micro Trust Pills (Apple Glass Pill) */
+.trust-badge,
+.live-status-pill,
+.section-subtitle {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: var(--shadow-xs) !important;
+  padding: 6px 14px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
 }
 
-.gallery-overlay {
-  background: linear-gradient(180deg, transparent 0%, rgba(6,18,10,0.8) 100%) !important;
-  backdrop-filter: blur(0px);
-  transition: backdrop-filter 0.3s ease !important;
+.live-status-pill {
+  color: #065f46 !important;
+  background: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
 }
 
-.gallery-card:hover .gallery-overlay {
-  backdrop-filter: blur(2px) !important;
+/* Hero Doctor Credentials Card */
+.hero-doctor-badge {
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-left: 3px solid #059669 !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  padding: 14px 18px !important;
+  margin: 20px 0 !important;
 }
 
-/* Lightbox — Glassmorphic Modal */
-.lightbox-modal {
-  background: rgba(7, 25, 15, 0.88) !important;
-  backdrop-filter: blur(16px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
+.doc-badge-info h4 {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
 }
 
-.lightbox-content img {
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1) !important;
-  border-radius: 16px !important;
+.doc-degree {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border: 1px solid #a7f3d0 !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  font-size: 0.75rem !important;
 }
 
-.lightbox-close {
-  background: rgba(255,255,255,0.15) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(255,255,255,0.25) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
-  transition: var(--transition-smooth) !important;
+/* Doctor Portrait Card */
+.doctor-img-box {
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
 }
 
-.lightbox-close:hover {
-  background: rgba(255,255,255,0.25) !important;
-  transform: scale(1.1);
+.doctor-rating-pill,
+.doctor-exp-pill {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: var(--shadow-md) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  color: #0f172a !important;
 }
 
-/* =========================================================
-   10. Booking Section — Glassmorphic Wizard
-   ========================================================= */
-.booking-section {
-  background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 50%, #f8fafc 100%) !important;
-  position: relative;
-  overflow: hidden;
+.doctor-floating-badge {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-lg) !important;
+  padding: 12px 16px !important;
 }
 
-.booking-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(16,185,129,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 30%, rgba(2,132,199,0.04) 0%, transparent 60%);
-  pointer-events: none;
+.doctor-floating-badge h5 {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
 }
 
-.booking-wrapper {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  box-shadow: 0 30px 70px -20px rgba(13,122,87,0.18), 0 12px 30px -8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9) !important;
-  border-radius: 28px !important;
+.floating-reg {
+  font-size: 0.72rem !important;
+  color: #065f46 !important;
+  font-weight: 600 !important;
 }
 
-.booking-steps-nav {
-  background: rgba(248,252,250,0.7) !important;
-  backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.5) !important;
+/* --------------------------------------------------------------------------
+   5. Interactive Booking & Payment Wizard (entering-data.md)
+   -------------------------------------------------------------------------- */
+.booking-section,
+.appointment-section {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 70px 0 !important;
 }
 
-.step-num {
-  background: rgba(226,232,240,0.8) !important;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.08), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  transition: var(--transition-smooth) !important;
+.booking-wizard-card,
+.appointment-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-2xl) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: 32px !important;
 }
 
-.step-nav-btn.active .step-num {
-  background: var(--grad-emerald) !important;
-  box-shadow: 0 0 0 4px rgba(16,185,129,0.22), 0 4px 12px rgba(13,122,87,0.25) !important;
+/* Form Inputs — Apple Field Design */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  font-family: inherit !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: var(--radius-md) !important;
+  padding: 12px 16px !important;
+  font-size: 0.92rem !important;
+  color: #0f172a !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: none !important;
 }
 
-/* Form Inputs — Glassmorphic */
-.form-group input,
-.form-group select,
-.form-group textarea {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1.5px solid rgba(226,232,240,0.8) !important;
-  box-shadow: inset 2px 2px 6px rgba(0,0,0,0.04), inset -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border-radius: 14px !important;
-  transition: var(--transition-smooth) !important;
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15) !important;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--primary) !important;
-  background: rgba(255,255,255,0.95) !important;
-  box-shadow: 0 0 0 4px rgba(13,122,87,0.12), inset 1px 1px 4px rgba(0,0,0,0.03) !important;
-}
-
-/* Time Chips — Neomorphic */
-.time-chip {
-  background: rgba(248,250,252,0.85) !important;
-  border: 1.5px solid rgba(226,232,240,0.7) !important;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.06), -3px -3px 8px rgba(255,255,255,0.9) !important;
-  border-radius: 14px !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.time-chip:hover {
-  box-shadow: 2px 2px 6px rgba(13,122,87,0.10), -2px -2px 6px rgba(255,255,255,0.9), 0 0 10px rgba(13,122,87,0.08) !important;
-  border-color: rgba(167,243,208,0.6) !important;
-  transform: translateY(-1px);
-}
-
-.time-chip.active {
-  background: var(--grad-emerald) !important;
-  border-color: transparent !important;
-  box-shadow: 0 6px 18px rgba(13,122,87,0.32), 0 0 12px rgba(13,122,87,0.18) !important;
-}
-
-/* Payment Guide Box — Glassmorphic */
-.payment-guide-box {
-  background: rgba(255,251,235,0.85) !important;
-  backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(253,230,138,0.6) !important;
-  box-shadow: 5px 5px 14px rgba(245,158,11,0.08), -3px -3px 10px rgba(255,255,255,0.85), 0 4px 20px rgba(245,158,11,0.06) !important;
-  border-radius: 20px !important;
-}
-
-.bkash-highlight {
-  background: rgba(255,255,255,0.88) !important;
-  backdrop-filter: blur(10px) !important;
-  border: 1.5px dashed rgba(225,29,72,0.5) !important;
-  box-shadow: 3px 3px 10px rgba(225,29,72,0.06), -2px -2px 8px rgba(255,255,255,0.9) !important;
-  border-radius: 16px !important;
-}
-
-/* =========================================================
-   11. Reviews — Premium Glass Cards
-   ========================================================= */
-.review-card {
-  background: rgba(255,255,255,0.80) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  box-shadow: 5px 5px 16px rgba(0,0,0,0.05), -4px -4px 12px rgba(255,255,255,0.9) !important;
-  border-radius: 22px !important;
-  transition: var(--transition-spring) !important;
-}
-
-.review-card:hover {
-  box-shadow: 0 20px 50px -10px rgba(13,122,87,0.15), -4px -4px 12px rgba(255,255,255,0.95) !important;
-  transform: translateY(-6px) !important;
-  border-color: rgba(167,243,208,0.4) !important;
-}
-
-.review-card::before {
-  color: rgba(13,122,87,0.08) !important;
-}
-
-.reviewer-avatar {
-  background: var(--grad-emerald) !important;
-  box-shadow: 0 4px 12px rgba(16,185,129,0.3), 0 0 10px rgba(13,122,87,0.15) !important;
-  border: 2px solid rgba(255,255,255,0.5) !important;
-}
-
-/* =========================================================
-   12. FAQ Accordion — Neomorphic
-   ========================================================= */
-.faq-item {
-  background: rgba(255,255,255,0.80) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  box-shadow: 4px 4px 12px rgba(0,0,0,0.05), -4px -4px 12px rgba(255,255,255,0.9) !important;
-  border-radius: 16px !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.faq-item:hover, .faq-item.active {
-  box-shadow: 6px 6px 18px rgba(13,122,87,0.10), -4px -4px 12px rgba(255,255,255,0.95) !important;
-  border-color: rgba(167,243,208,0.4) !important;
-}
-
-.faq-question {
-  background: transparent !important;
-  border-radius: 16px !important;
-}
-
-.faq-answer {
-  background: transparent !important;
-}
-
-/* =========================================================
-   13. Contact Cards — Glassmorphic
-   ========================================================= */
-.contact-card {
-  background: rgba(255,255,255,0.80) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  box-shadow: 5px 5px 16px rgba(0,0,0,0.05), -4px -4px 12px rgba(255,255,255,0.88) !important;
-  border-radius: 22px !important;
-  transition: var(--transition-smooth) !important;
-}
-
-.contact-card:hover {
-  box-shadow: 8px 8px 22px rgba(13,122,87,0.10), -4px -4px 12px rgba(255,255,255,0.95) !important;
-  transform: translateY(-3px);
-}
-
-.contact-icon {
-  background: linear-gradient(135deg, rgba(236,253,245,1) 0%, rgba(209,250,229,1) 100%) !important;
-  box-shadow: 3px 3px 8px rgba(13,122,87,0.10), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border: 1px solid rgba(167,243,208,0.4) !important;
-  border-radius: 14px !important;
-}
-
-/* =========================================================
-   14. Footer — Glassmorphic Dark Theme
-   ========================================================= */
-.footer {
-  background: linear-gradient(180deg, #031f15 0%, #021509 100%) !important;
-  border-top: 1px solid rgba(16,185,129,0.25) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--grad-emerald);
-}
-
-.footer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 10% 50%, rgba(13,122,87,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 90% 50%, rgba(2,132,199,0.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.footer-col h4::after {
-  background: var(--grad-emerald) !important;
-  width: 36px;
-  height: 2px;
-  box-shadow: 0 0 6px rgba(13,122,87,0.4);
-}
-
-.footer-links a:hover {
-  color: #a7f3d0 !important;
-  padding-left: 6px;
-}
-
-/* =========================================================
-   15. Floating WhatsApp Button — Premium
-   ========================================================= */
-.floating-whatsapp {
-  background: linear-gradient(135deg, #25d366 0%, #1da851 100%) !important;
-  box-shadow: 0 12px 32px -8px rgba(37,211,102,0.55), 0 0 0 0 rgba(37,211,102,0.5) !important;
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  backdrop-filter: blur(4px) !important;
-  border-radius: 999px !important;
-}
-
-.floating-whatsapp:hover {
-  box-shadow: 0 16px 40px -8px rgba(37,211,102,0.6), 0 0 24px rgba(37,211,102,0.3) !important;
-  transform: translateY(-4px) scale(1.04) !important;
-}
-
-/* =========================================================
-   16. Mobile Bottom Bar — Premium Glassmorphic Dock
-   ========================================================= */
+/* --------------------------------------------------------------------------
+   6. Mobile Floating Action Bar (tab-bars.md & accessibility.md)
+   Guaranteed 48x48pt hit targets with Apple Liquid Glass feel
+   -------------------------------------------------------------------------- */
 .mobile-bottom-bar {
-  background: rgba(255,255,255,0.88) !important;
-  backdrop-filter: blur(28px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-  border: 1px solid rgba(255,255,255,0.75) !important;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.08), 0 16px 48px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.9) !important;
-  border-radius: 28px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  bottom: 12px !important;
+  left: 12px !important;
+  right: 12px !important;
+  padding: 0 !important;
+  z-index: 50 !important;
+}
+
+.mobile-bar-inner {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.14) !important;
+  padding: 6px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 4px !important;
 }
 
 .m-bar-btn {
-  border-radius: 18px !important;
-  transition: var(--transition-spring) !important;
-}
-
-.m-btn-call {
-  background: rgba(240,249,255,0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(186,230,253,0.5) !important;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.05), -2px -2px 6px rgba(255,255,255,0.9) !important;
-}
-
-.m-btn-wa {
-  background: rgba(240,253,244,0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(187,247,208,0.5) !important;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.05), -2px -2px 6px rgba(255,255,255,0.9) !important;
-}
-
-.m-btn-book {
-  background: var(--grad-emerald) !important;
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  box-shadow: 0 6px 20px rgba(13,122,87,0.35), 0 0 10px rgba(13,122,87,0.15) !important;
-}
-
-.m-bar-btn:active {
-  transform: scale(0.92) !important;
-}
-
-/* =========================================================
-   17. Modals — Glassmorphic Overlays
-   ========================================================= */
-.ticket-modal {
-  background: rgba(7,25,15,0.80) !important;
-  backdrop-filter: blur(12px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
-}
-
-.ticket-card {
-  background: rgba(255,255,255,0.92) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255,255,255,0.8) !important;
-  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.9) !important;
-  border-radius: 28px !important;
-}
-
-.ticket-header {
-  background: var(--grad-emerald) !important;
-  border-radius: 28px 28px 0 0 !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.ticket-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.ticket-info-list {
-  background: rgba(248,250,252,0.7) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(226,232,240,0.5) !important;
-  border-radius: 16px !important;
-}
-
-.ticket-close {
-  background: rgba(255,255,255,0.2) !important;
-  backdrop-filter: blur(6px) !important;
-  border: 1px solid rgba(255,255,255,0.3) !important;
-}
-
-/* =========================================================
-   18. Nationwide / Dhaka Sections
-   ========================================================= */
-.nationwide-section {
-  background: linear-gradient(180deg, #f8fafc 0%, rgba(240,253,244,0.8) 50%, #f0fdf4 100%) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.dhaka-highlight-box {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1.5px solid rgba(16,185,129,0.3) !important;
-  box-shadow: 6px 6px 18px rgba(13,122,87,0.08), -4px -4px 12px rgba(255,255,255,0.9), 0 0 30px rgba(13,122,87,0.06) !important;
-  border-radius: 24px !important;
-}
-
-.dhaka-area-badge {
-  background: rgba(240,253,244,0.85) !important;
-  backdrop-filter: blur(6px) !important;
-  border: 1px solid rgba(167,243,208,0.5) !important;
-  box-shadow: 1px 1px 4px rgba(13,122,87,0.06), -1px -1px 4px rgba(255,255,255,0.9) !important;
-  border-radius: 999px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 4px !important;
+  border-radius: var(--radius-md) !important;
+  color: #334155 !important;
+  text-decoration: none !important;
   transition: var(--transition-smooth) !important;
 }
 
-.dhaka-area-badge:hover {
-  background: rgba(220,252,231,0.95) !important;
-  box-shadow: 2px 2px 6px rgba(13,122,87,0.10), -1px -1px 4px rgba(255,255,255,0.9) !important;
-  transform: translateY(-1px);
+.m-bar-btn i {
+  font-size: 1.15rem !important;
+  margin-bottom: 2px !important;
 }
 
-/* =========================================================
-   19. Scrollbar — Custom Modern Style
-   ========================================================= */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.m-bar-btn span {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(240,253,244,0.5);
-  border-radius: 8px;
+.m-bar-btn.m-btn-book {
+  background: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3) !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #10b981, #0d7a57);
-  border-radius: 8px;
-  border: 2px solid rgba(240,253,244,0.5);
+.m-bar-btn.m-btn-book:active {
+  transform: scale(0.96) !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #059669, #065f46);
+/* --------------------------------------------------------------------------
+   7. Mobile Navigation Drawer (sheets.md)
+   -------------------------------------------------------------------------- */
+.mobile-drawer {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border-left: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: -15px 0 45px rgba(15, 23, 42, 0.1) !important;
 }
 
-/* =========================================================
-   20. Selection Style
-   ========================================================= */
-::selection {
-  background: rgba(16,185,129,0.25);
-  color: #065f46;
+.drawer-header {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 16px !important;
 }
 
-/* =========================================================
-   21. Focus Visible — Accessible Glow Rings
-   ========================================================= */
-:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 6px rgba(13,122,87,0.15);
-  border-radius: 6px;
+.drawer-nav-item a {
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 10px 16px !important;
+  font-weight: 500 !important;
+  color: #1e293b !important;
+  border-radius: var(--radius-sm) !important;
 }
 
-/* =========================================================
-   22. Animations — Fade In Reveal
-   ========================================================= */
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+.drawer-nav-item a:hover,
+.drawer-nav-item a.active {
+  background: rgba(5, 150, 105, 0.08) !important;
+  color: #059669 !important;
 }
 
-@keyframes revealScale {
-  from { opacity: 0; transform: scale(0.94); }
-  to   { opacity: 1; transform: scale(1); }
+/* --------------------------------------------------------------------------
+   8. Footer Styling (High Contrast, Clean Layout)
+   -------------------------------------------------------------------------- */
+.footer {
+  background: #f1f5f9 !important;
+  border-top: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+  padding: 60px 0 30px !important;
 }
 
-/* Apply reveal to major sections */
-.section > .container,
-.hero-content,
-.hero-media {
-  animation: revealUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+.footer-brand h3 {
+  color: #0f172a !important;
+  font-weight: 700 !important;
 }
 
-.hero-media {
-  animation-delay: 0.15s;
+.footer-brand p {
+  color: #475569 !important;
+  font-size: 0.9rem !important;
 }
 
-/* =========================================================
-   23. Glassmorphic Status Badges
-   ========================================================= */
-.badge-verified {
-  background: rgba(209,250,229,0.85) !important;
-  backdrop-filter: blur(6px) !important;
-  border: 1px solid rgba(167,243,208,0.5) !important;
-  box-shadow: 2px 2px 6px rgba(13,122,87,0.08), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border-radius: 999px !important;
+.footer-col h4 {
+  color: #0f172a !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 16px !important;
 }
 
-.badge-verifying {
-  background: rgba(254,243,199,0.85) !important;
-  backdrop-filter: blur(6px) !important;
-  border: 1px solid rgba(253,230,138,0.5) !important;
-  box-shadow: 2px 2px 6px rgba(245,158,11,0.08), -2px -2px 6px rgba(255,255,255,0.9) !important;
-  border-radius: 999px !important;
+.footer-links a {
+  color: #475569 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
 }
 
-.unlocked-whatsapp-box {
-  background: rgba(240,253,244,0.88) !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1.5px solid rgba(16,185,129,0.35) !important;
-  box-shadow: 5px 5px 14px rgba(13,122,87,0.10), -3px -3px 10px rgba(255,255,255,0.9), 0 8px 24px rgba(13,122,87,0.10) !important;
-  border-radius: 18px !important;
+.footer-links a:hover {
+  color: #059669 !important;
 }
 
-/* =========================================================
-   24. Micro-interactions — Pulse on Icons
-   ========================================================= */
-.floating-icon {
-  background: var(--grad-emerald) !important;
-  box-shadow: 0 0 12px rgba(16,185,129,0.30) !important;
-  transition: var(--transition-spring) !important;
+.footer-bottom {
+  border-top: 1px solid #cbd5e1 !important;
+  padding-top: 24px !important;
+  margin-top: 40px !important;
+  font-size: 0.82rem !important;
+  color: #64748b !important;
 }
 
-.doctor-floating-badge:hover .floating-icon {
-  box-shadow: 0 0 20px rgba(13,122,87,0.45) !important;
-  transform: scale(1.1) rotate(5deg) !important;
+.footer-bottom a {
+  color: #059669 !important;
+  font-weight: 600 !important;
 }
 
-/* =========================================================
-   25. Reduced Motion Support
-   ========================================================= */
+/* --------------------------------------------------------------------------
+   9. Verification Ticket Modal (Apple Sheet Conventions)
+   -------------------------------------------------------------------------- */
+.ticket-modal-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: var(--radius-2xl) !important;
+  box-shadow: var(--shadow-xl) !important;
+  overflow: hidden !important;
+}
+
+.ticket-header-gradient {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+.ticket-token-display {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Reduced Motion Support (accessibility.md)
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001s !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
   }
 }
