@@ -2,10 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Phone, MessageCircle, CalendarCheck, MapPin } from 'lucide-react';
 import { clinicConfig } from '@/data/clinicData';
 
 export default function MobileFloatingDock() {
+  const pathname = usePathname();
+  const hasOnPageSections = pathname === '/' || pathname === '/districts';
+  const bookingHref = hasOnPageSections ? '#booking' : '/#booking';
+  const districtsHref = pathname === '/districts' ? '#districts-grid' : '/districts';
   return (
     <aside 
       aria-label="মোবাইল দ্রুত অ্যাকশন বার"
@@ -39,7 +44,7 @@ export default function MobileFloatingDock() {
 
         {/* 64 Districts Link: 48x48pt hit target */}
         <Link
-          href="/districts"
+          href={districtsHref}
           className="min-h-[48px] flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-slate-700 hover:bg-slate-100/80 active:scale-95 transition-all"
           aria-label="৬৪ জেলার ডেলিভারি ও টেলিমেডিসিন দেখুন"
         >
@@ -49,7 +54,7 @@ export default function MobileFloatingDock() {
 
         {/* Primary CTA Book Now: Apple Prominent Style */}
         <a
-          href="#booking"
+          href={bookingHref}
           className="min-h-[48px] flex flex-col items-center justify-center py-1.5 px-1 rounded-xl apple-btn-prominent font-bold shadow-sm active:scale-95 transition-transform"
           aria-label="সিরিয়াল ও ফি পরিশোধ করুন"
         >

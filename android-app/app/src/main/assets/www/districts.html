@@ -195,7 +195,8 @@
           <li><a href="index.html#about" class="nav-link">ডক্টর পরিচিতি</a></li>
           <li><a href="index.html#services" class="nav-link">চিকিৎসা সেবা</a></li>
           <li><a href="districts.html" class="nav-link active">৬৪ জেলা সেবা</a></li>
-          <li><a href="index.html#reviews" class="nav-link">রোগীদের অভিজ্ঞতা</a></li>
+          <li><a href="#reviews" class="nav-link">রোগীদের অভিজ্ঞতা</a></li>
+          <li><a href="#faq" class="nav-link">প্রশ্নোত্তর</a></li>
           <li><a href="index.html#contact" class="nav-link">যোগাযোগ</a></li>
         </ul>
       </nav>
@@ -207,9 +208,63 @@
         <a href="index.html#appointment" class="btn btn-primary btn-sm">
           <i class="fa-solid fa-calendar-check"></i> সিরিয়াল বুকিং
         </a>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Open navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile App Drawer & Backdrop -->
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <div class="brand-icon" style="width:36px; height:36px; font-size:1.1rem;">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div class="brand-text">
+          <h2 style="font-size:1rem;">হাসিনা হোমিও কিউর</h2>
+          <span style="font-size:0.65rem;">HASINA HOMEO CURE</span>
+        </div>
+      </div>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+      <ul class="drawer-nav-list">
+        <li class="drawer-nav-item"><a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> <span>হোম</span></a></li>
+        <li class="drawer-nav-item"><a href="index.html#about" class="drawer-link"><i class="fa-solid fa-user-doctor"></i> <span>ডক্টর পরিচিতি</span></a></li>
+        <li class="drawer-nav-item"><a href="index.html#services" class="drawer-link"><i class="fa-solid fa-stethoscope"></i> <span>চিকিৎসা সেবা সমূহ</span></a></li>
+        <li class="drawer-nav-item"><a href="districts.html" class="drawer-link active"><i class="fa-solid fa-map-location-dot"></i> <span>৬৪ জেলা সেবা</span></a></li>
+        <li class="drawer-nav-item"><a href="index.html#chamber" class="drawer-link"><i class="fa-solid fa-hospital"></i> <span>চেম্বার গ্যালারি</span></a></li>
+        <li class="drawer-nav-item"><a href="index.html#appointment" class="drawer-link"><i class="fa-solid fa-calendar-check"></i> <span>অ্যাপয়েন্টমেন্ট বুকিং</span></a></li>
+        <li class="drawer-nav-item"><a href="#reviews" class="drawer-link" onclick="document.getElementById('mobile-drawer')?.classList.remove('open'); document.getElementById('nav-backdrop')?.classList.remove('active');"><i class="fa-solid fa-star"></i> <span>রোগীদের অভিজ্ঞতা</span></a></li>
+        <li class="drawer-nav-item"><a href="#faq" class="drawer-link" onclick="document.getElementById('mobile-drawer')?.classList.remove('open'); document.getElementById('nav-backdrop')?.classList.remove('active');"><i class="fa-solid fa-circle-question"></i> <span>প্রশ্নোত্তর</span></a></li>
+        <li class="drawer-nav-item"><a href="index.html#contact" class="drawer-link"><i class="fa-solid fa-location-dot"></i> <span>চেম্বারের ঠিকানা</span></a></li>
+        <li class="drawer-nav-item"><a href="/payment-app" target="_blank" class="drawer-link" style="color: #0d7a57; font-weight: 700; background: #ecfdf5; border-radius: 8px;"><i class="fa-solid fa-mobile-screen"></i> <span>ডক্টর পেমেন্ট অ্যাপ (HHC Pay)</span></a></li>
+        <li class="drawer-nav-item"><a href="/Hasina-Homeo-Cure.apk" download="Hasina-Homeo-Cure.apk" class="drawer-link" style="color: #15803d; font-weight: 700; background: #f0fdf4; border-radius: 8px;"><i class="fa-brands fa-android"></i> <span>এন্ড্রয়েড APK ডাউনলোড (7.1 MB)</span></a></li>
+      </ul>
+
+      <!-- Quick Action Inside Drawer -->
+      <div class="drawer-cta-box">
+        <p style="font-size:0.85rem; font-weight:700; color:var(--primary);">
+          <i class="fa-solid fa-phone"></i> সরাসরি পরামর্শ নিন
+        </p>
+        <a href="tel:+8801721515546" class="btn btn-phone btn-sm" style="width:100%;">
+          <i class="fa-solid fa-phone"></i> ০১৭২১-৫১৫৫৪৬
+        </a>
+        <a href="index.html#appointment" class="btn btn-whatsapp btn-sm" style="width:100%;">
+          <i class="fa-brands fa-whatsapp"></i> ফি দিয়ে হোয়াটসঅ্যাপ আনলক
+        </a>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <p style="font-weight:700; color:var(--primary);">ডাঃ শামসুন্নাহার স্নেহ (DHMS)</p>
+      <p>গভঃ রেজিঃ ৩৮২৭৫ | বিএইচবি ঢাকা</p>
+    </div>
+  </aside>
 
   <main>
     <!-- Hub Hero -->
@@ -1667,6 +1722,40 @@
         </div>
       </div>
     </section>
+
+    <!-- Patient Reviews & Success Stories -->
+    <section class="section section-alt" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">সফলতার গল্প</span>
+          <h2 class="section-title">১,২৮৭+ জন সুস্থ রোগীর বাস্তব অভিজ্ঞতা</h2>
+          <p class="section-desc">
+            রোগীদের অকপট মন্তব্য ও সুস্থতার অনুভূতিই আমাদের সেবার সবচেয়ে বড় স্বীকৃতি।
+          </p>
+        </div>
+
+        <div class="reviews-grid" id="reviews-grid">
+          <!-- Populated by assets/js/main.js from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions (FAQ) -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">সাধারণ জিজ্ঞাসা</span>
+          <h2 class="section-title">প্রায়শই জিজ্ঞাসিত প্রশ্ন ও উত্তর</h2>
+          <p class="section-desc">
+            হোমিওপ্যাথিক চিকিৎসা সম্পর্কে আপনার যেকোনো দ্বিধা দূর করতে জেনে নিন প্রয়োজনীয় তথ্য।
+          </p>
+        </div>
+
+        <div class="faq-accordion" id="faqs-accordion">
+          <!-- Populated by assets/js/main.js from data.js -->
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -1754,6 +1843,20 @@
 
       document.getElementById('results-count').textContent = count;
     }
+
+    // Handle hash scrolling on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }, 200);
+        }
+      }
+    });
   </script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

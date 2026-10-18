@@ -1,8 +1,19 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { clinicConfig } from '@/data/clinicData';
 import { districtsData } from '@/data/districtsData';
 
 export default function Footer() {
+  const pathname = usePathname();
+  const hasOnPageSections = pathname === '/' || pathname === '/districts';
+  const servicesHref = hasOnPageSections ? '#services' : '/#services';
+  const bookingHref = hasOnPageSections ? '#booking' : '/#booking';
+  const districtsHref = pathname === '/districts' ? '#districts-grid' : '/districts';
+  const reviewsHref = hasOnPageSections ? '#reviews' : '/#reviews';
+  const faqHref = hasOnPageSections ? '#faq' : '/#faq';
+
   const popularDistricts = districtsData.slice(0, 12);
 
   return (
@@ -48,27 +59,32 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <a href="#services" className="hover:text-emerald-800 transition-colors">
+                <Link href="/" className="hover:text-emerald-800 transition-colors">
+                  হোম পেজ
+                </Link>
+              </li>
+              <li>
+                <a href={servicesHref} className="hover:text-emerald-800 transition-colors">
                   চিকিৎসা ও সেবাসমূহ
                 </a>
               </li>
               <li>
-                <a href="#booking" className="hover:text-emerald-800 transition-colors font-semibold text-emerald-800">
+                <a href={bookingHref} className="hover:text-emerald-800 transition-colors font-semibold text-emerald-800">
                   ফি প্রদান ও সিরিয়াল বুকিং (৳৫০০)
                 </a>
               </li>
               <li>
-                <Link href="/districts" className="hover:text-emerald-800 transition-colors">
+                <Link href={districtsHref} className="hover:text-emerald-800 transition-colors">
                   ৬৪ জেলা হোম ডেলিভারি ও টেলিমেডিসিন
                 </Link>
               </li>
               <li>
-                <a href="#reviews" className="hover:text-emerald-800 transition-colors">
+                <a href={reviewsHref} className="hover:text-emerald-800 transition-colors">
                   রোগীদের বাস্তব অভিজ্ঞতা ও রিভিউ
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-emerald-800 transition-colors">
+                <a href={faqHref} className="hover:text-emerald-800 transition-colors">
                   সাধারণ জিজ্ঞাসা (FAQ)
                 </a>
               </li>

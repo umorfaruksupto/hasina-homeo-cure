@@ -167,30 +167,41 @@ export default function Navbar() {
             </div>
 
             <nav className="flex flex-col space-y-1 text-sm font-medium" aria-label="মোবাইল নেভিগেশন">
+              <Link
+                href="/"
+                onClick={() => setIsOpen(false)}
+                className={`min-h-[44px] flex items-center px-3.5 py-2.5 rounded-xl transition-colors ${
+                  pathname === '/' ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-800 hover:bg-slate-100 hover:text-emerald-800'
+                }`}
+              >
+                হোম পেজ
+              </Link>
               <a
-                href="#services"
+                href={servicesHref}
                 onClick={() => setIsOpen(false)}
                 className="min-h-[44px] flex items-center px-3.5 py-2.5 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-emerald-800 transition-colors"
               >
                 চিকিৎসাসমূহ
               </a>
               <Link
-                href="/districts"
+                href={districtsHref}
                 onClick={() => setIsOpen(false)}
-                className="min-h-[44px] flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-emerald-800 transition-colors"
+                className={`min-h-[44px] flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-colors ${
+                  pathname === '/districts' ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-800 hover:bg-slate-100 hover:text-emerald-800'
+                }`}
               >
                 <span>৬৪ জেলা ডেলিভারি ও টেলিমেডিসিন</span>
                 <span className="text-xs text-emerald-700 font-semibold">৬৪ জেলা →</span>
               </Link>
               <a
-                href="#reviews"
+                href={reviewsHref}
                 onClick={() => setIsOpen(false)}
                 className="min-h-[44px] flex items-center px-3.5 py-2.5 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-emerald-800 transition-colors"
               >
                 রোগীদের বাস্তব রিভিউ
               </a>
               <a
-                href="#faq"
+                href={faqHref}
                 onClick={() => setIsOpen(false)}
                 className="min-h-[44px] flex items-center px-3.5 py-2.5 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-emerald-800 transition-colors"
               >
@@ -200,7 +211,7 @@ export default function Navbar() {
 
             <div className="pt-2 border-t border-slate-200 flex flex-col gap-2.5">
               <a
-                href="#booking"
+                href={bookingHref}
                 onClick={() => setIsOpen(false)}
                 className="w-full min-h-[46px] flex items-center justify-center py-3 rounded-xl apple-btn-prominent font-semibold text-center text-sm shadow-sm"
               >
