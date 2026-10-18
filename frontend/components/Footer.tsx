@@ -145,9 +145,21 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>© {new Date().getFullYear()} হাসিনা হোমিও কিউর (Hasina Homeo Cure). সর্বস্বত্ব সংরক্ষিত।</p>
-          <p className="text-center md:text-right font-medium text-slate-600">
-            বোর্ড সার্টিফাইড হোমিওপ্যাথিক চিকিৎসা সেবা • ঢাকা ও সমগ্র বাংলাদেশ
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center md:text-right font-medium text-slate-600">
+            <span>বোর্ড সার্টিফাইড হোমিওপ্যাথিক চিকিৎসা সেবা • ঢাকা ও সমগ্র বাংলাদেশ</span>
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <span>
+              Built by{' '}
+              <a
+                href="https://luminexlabs.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-emerald-800 hover:text-emerald-950 hover:underline transition-colors"
+              >
+                luminexlabs.io
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
