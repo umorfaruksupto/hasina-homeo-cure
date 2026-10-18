@@ -1,47 +1,59 @@
 /* ==========================================================================
-   Apple Human Interface Guidelines (HIG) Design System Override
+   Apple Human Interface Guidelines (HIG) Design System
    Crafted for Hasina Homeo Cure (হাসিনা হোমিও কিউর)
-   Grounded in Apple HIG 2026: Liquid Glass, Dynamic Typography, & Clean Surfaces
+   Grounded in Apple HIG 2026: Liquid Glass, Cupertino Precision, & San Francisco Typography
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   0. Apple Design Tokens & Typography
+   0. Apple Design Tokens & Typography Scale
    -------------------------------------------------------------------------- */
 :root {
-  /* Apple System Palette */
-  --apple-bg: #f8fafc;
+  /* Apple Signature Palette */
+  --apple-bg: #f5f5f7;
   --apple-surface: #ffffff;
   --apple-card: #ffffff;
-  --apple-border: rgba(226, 232, 240, 0.85);
-  --apple-border-hairline: rgba(0, 0, 0, 0.08);
-  
-  /* Apple Accent Color (Judicious use as per branding.md) */
-  --primary: #059669;
-  --primary-hover: #047857;
-  --primary-dark: #064e3b;
-  --primary-light: #ecfdf5;
-  --primary-gradient: #059669;
-  --grad-emerald: #059669;
+  --apple-border: rgba(0, 0, 0, 0.08);
+  --apple-border-strong: rgba(0, 0, 0, 0.14);
+  --apple-border-hairline: rgba(0, 0, 0, 0.05);
 
-  /* Apple Liquid Glass (Functional Floating Layer Only) */
+  /* Apple Monochromatic Text Hierarchy */
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #6e6e73;
+  --apple-text-tertiary: #86868b;
+  --apple-text-quaternary: #aeaeb2;
+
+  /* Apple Accent Color (Judicious use as per branding.md & color.md) */
+  --primary: #047857;
+  --primary-hover: #065f46;
+  --primary-dark: #022c22;
+  --primary-light: #ecfdf5;
+  --primary-gradient: #047857;
+  --grad-emerald: #047857;
+  --apple-accent: #047857;
+  --apple-blue: #0071e3;
+  --wa-green: #25d366;
+
+  /* Apple Liquid Glass (Functional Floating Layer Only - liquid-glass.md) */
   --liquid-glass-bg: rgba(255, 255, 255, 0.82);
-  --liquid-glass-blur: blur(24px) saturate(180%);
-  --liquid-glass-border: rgba(255, 255, 255, 0.65);
-  --liquid-glass-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.08);
+  --liquid-glass-blur: blur(20px) saturate(180%);
+  --liquid-glass-border: rgba(255, 255, 255, 0.7);
+  --liquid-glass-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.08);
 
   /* Apple Elevation (Content Layer) */
-  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
-  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
-  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 12px 32px -8px rgba(15, 23, 42, 0.09);
-  --shadow-xl: 0 20px 48px -12px rgba(15, 23, 42, 0.12);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 6px 0 rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 18px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 24px 50px -12px rgba(0, 0, 0, 0.12);
 
-  /* Apple Radii */
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 18px;
-  --radius-xl: 22px;
-  --radius-2xl: 28px;
+  /* Apple Squircle Radii */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 980px;
   --radius-full: 9999px;
 
   /* Apple Fluid Spring Physics */
@@ -55,21 +67,22 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", "Hind Siliguri", system-ui, sans-serif !important;
   background-color: var(--apple-bg) !important;
-  color: #0f172a !important;
+  color: var(--apple-text-primary) !important;
   line-height: 1.6 !important;
-  letter-spacing: -0.011em !important;
+  letter-spacing: -0.012em !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Inter", "Hind Siliguri", system-ui, sans-serif !important;
-  color: #0f172a !important;
+  color: var(--apple-text-primary) !important;
   letter-spacing: -0.025em !important;
   font-weight: 700 !important;
+  line-height: 1.2 !important;
 }
 
-/* Disable tacky animations and glowing blobs */
+/* Remove tacky neon blobs, ambient gradients and sweep animations */
 .ambient-glow,
 .ambient-glow-1,
 .ambient-glow-2,
@@ -78,75 +91,136 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   2. Top Bar & Sticky Liquid Glass Navbar (liquid-glass.md & toolbars.md)
+   2. Top Announcement Bar (Minimal, Authoritative, Clean)
    -------------------------------------------------------------------------- */
 .top-bar {
-  background: #064e3b !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #ecfdf5 !important;
+  background: #fbfbfd !important;
+  border-bottom: 1px solid var(--apple-border) !important;
+  color: var(--apple-text-secondary) !important;
   padding: 8px 0 !important;
   font-size: 0.82rem !important;
 }
 
+.top-bar-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.top-bar-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
 .top-bar a {
-  color: #ffffff !important;
+  color: var(--apple-text-primary) !important;
   font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.top-bar a:hover {
+  color: var(--primary) !important;
 }
 
 .badge-reg {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: var(--radius-full) !important;
-  padding: 4px 12px !important;
+  background: rgba(4, 120, 87, 0.08) !important;
+  border: 1px solid rgba(4, 120, 87, 0.2) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 3px 10px !important;
   font-weight: 600 !important;
-  color: #ffffff !important;
-  backdrop-filter: blur(10px) !important;
+  color: var(--primary) !important;
+  font-size: 0.78rem !important;
+  backdrop-filter: none !important;
 }
 
+/* --------------------------------------------------------------------------
+   3. Sticky Liquid Glass Navbar (liquid-glass.md & toolbars.md)
+   -------------------------------------------------------------------------- */
 .navbar {
   background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid var(--apple-border) !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02) !important;
   padding: 12px 0 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
   transition: var(--transition-smooth) !important;
 }
 
+.nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.brand-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+}
+
 .brand-icon {
-  background: #059669 !important;
-  border-radius: 14px !important;
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25) !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: var(--primary) !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.2) !important;
+  font-size: 1.1rem !important;
   transition: var(--transition-smooth) !important;
 }
 
 .brand-text h2 {
   font-size: 1.15rem !important;
   font-weight: 700 !important;
-  color: #0f172a !important;
+  color: var(--apple-text-primary) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
 }
 
 .brand-text span {
-  font-size: 0.65rem !important;
+  font-size: 0.68rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
-  color: #059669 !important;
+  color: var(--apple-text-tertiary) !important;
+}
+
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .nav-link {
-  color: #334155 !important;
+  color: var(--apple-text-secondary) !important;
   font-weight: 500 !important;
-  font-size: 0.92rem !important;
+  font-size: 0.9rem !important;
   padding: 8px 14px !important;
   border-radius: var(--radius-sm) !important;
+  text-decoration: none !important;
   transition: var(--transition-smooth) !important;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--apple-text-primary) !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
 .nav-link.active {
-  color: #059669 !important;
-  background: rgba(5, 150, 105, 0.06) !important;
+  color: var(--primary) !important;
+  background: rgba(4, 120, 87, 0.08) !important;
+  font-weight: 600 !important;
 }
 
 .nav-link::after {
@@ -154,69 +228,69 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   3. Apple Button System (buttons.md)
-   No jumping, no neon glow, clean touch targets, fluid spring feedback
+   4. Apple Button System (buttons.md)
+   Pill silhouettes, 44x44pt hit targets, no tacky shimmer, spring press
    -------------------------------------------------------------------------- */
 .btn {
   font-family: inherit !important;
   font-weight: 600 !important;
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-pill) !important;
   min-height: 44px !important;
-  padding: 10px 20px !important;
+  padding: 10px 22px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   cursor: pointer !important;
-  letter-spacing: normal !important;
+  letter-spacing: -0.01em !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
 }
 
 .btn::before {
-  display: none !important; /* Remove tacky shimmer sweep */
+  display: none !important; /* No tacky shimmer sweeps */
 }
 
 .btn:active {
-  transform: scale(0.98) !important;
+  transform: scale(0.97) !important;
 }
 
-/* Apple Prominent Button Style */
+/* Apple Prominent Button */
 .btn-primary {
-  background: #059669 !important;
+  background: var(--primary) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.24) !important;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.25) !important;
 }
 
 .btn-primary:hover {
-  background: #047857 !important;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.32) !important;
+  background: var(--primary-hover) !important;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.35) !important;
   transform: translateY(-1px) !important;
 }
 
-/* Apple Secondary Buttons (Restrained, Monochrome) */
+/* Apple Secondary Ghost / Outline Buttons */
 .btn-secondary,
 .btn-outline,
 .btn-phone {
   background: #ffffff !important;
-  color: #1e293b !important;
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  color: var(--apple-text-primary) !important;
+  border: 1px solid var(--apple-border-strong) !important;
+  box-shadow: var(--shadow-xs) !important;
 }
 
 .btn-secondary:hover,
 .btn-outline:hover,
 .btn-phone:hover {
-  background: #f8fafc !important;
-  border-color: #94a3b8 !important;
-  color: #059669 !important;
+  background: #fbfbfd !important;
+  border-color: var(--apple-text-tertiary) !important;
+  color: var(--primary) !important;
   transform: translateY(-1px) !important;
 }
 
 .btn-whatsapp {
   background: #25d366 !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25) !important;
 }
 
@@ -227,375 +301,898 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   4. Apple Content Hierarchy: Cards, Bento & Sections (materials.md)
-   No muddy neumorphism; clean 1px borders, subtle ambient shadows
+   5. Hero Section (Apple Pro Keynote Presentation)
    -------------------------------------------------------------------------- */
-.card,
-.service-card,
-.stat-item,
-.about-feat-item,
-.review-card,
-.chamber-card,
-.district-card,
-.faq-item {
-  background: #ffffff !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-lg) !important;
-  box-shadow: var(--shadow-sm) !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.card:hover,
-.service-card:hover,
-.stat-item:hover,
-.about-feat-item:hover,
-.review-card:hover,
-.chamber-card:hover,
-.district-card:hover {
-  border-color: rgba(5, 150, 105, 0.35) !important;
-  box-shadow: var(--shadow-md) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Hero Section Refinements */
 .hero {
-  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(16, 185, 129, 0.08) 0%, transparent 60%), #f8fafc !important;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-  padding: 50px 0 70px !important;
+  background: #ffffff !important;
+  padding: 4.5rem 0 5rem !important;
+  border-bottom: 1px solid var(--apple-border-hairline) !important;
+  position: relative !important;
 }
 
-.hero::before {
-  display: none !important;
+.hero-grid {
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  align-items: center !important;
+  gap: 4rem !important;
 }
 
-.hero-title {
-  font-size: 2.8rem !important;
-  line-height: 1.18 !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-  letter-spacing: -0.03em !important;
+.hero-header-badges {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 1.5rem !important;
 }
 
-.hero-title span {
-  color: #059669 !important;
-  background: none !important;
-  -webkit-text-fill-color: initial !important;
-}
-
-.hero-desc {
-  font-size: 1.05rem !important;
-  color: #475569 !important;
-  line-height: 1.65 !important;
-  margin-top: 14px !important;
-}
-
-/* Micro Trust Pills (Apple Glass Pill) */
-.trust-badge,
-.live-status-pill,
-.section-subtitle {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-full) !important;
-  box-shadow: var(--shadow-xs) !important;
+.trust-badge {
+  background: #f5f5f7 !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-pill) !important;
   padding: 6px 14px !important;
   font-size: 0.82rem !important;
   font-weight: 600 !important;
-  color: #0f172a !important;
+  color: var(--apple-text-secondary) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
 }
 
 .live-status-pill {
-  color: #065f46 !important;
-  background: #ecfdf5 !important;
-  border-color: #a7f3d0 !important;
-}
-
-/* Hero Doctor Credentials Card */
-.hero-doctor-badge {
-  background: #ffffff !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-left: 3px solid #059669 !important;
-  border-radius: var(--radius-md) !important;
-  box-shadow: var(--shadow-sm) !important;
-  padding: 14px 18px !important;
-  margin: 20px 0 !important;
-}
-
-.doc-badge-info h4 {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  color: #0f172a !important;
-}
-
-.doc-degree {
-  background: #ecfdf5 !important;
-  color: #065f46 !important;
-  border: 1px solid #a7f3d0 !important;
-  padding: 2px 8px !important;
-  border-radius: 6px !important;
-  font-size: 0.75rem !important;
-}
-
-/* Doctor Portrait Card */
-.doctor-img-box {
-  border: 1px solid rgba(226, 232, 240, 0.8) !important;
-  border-radius: var(--radius-xl) !important;
-  box-shadow: var(--shadow-lg) !important;
-  overflow: hidden !important;
-  background: #ffffff !important;
-}
-
-.doctor-rating-pill,
-.doctor-exp-pill {
-  background: rgba(255, 255, 255, 0.92) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-full) !important;
-  box-shadow: var(--shadow-md) !important;
-  font-weight: 600 !important;
+  background: rgba(4, 120, 87, 0.08) !important;
+  border: 1px solid rgba(4, 120, 87, 0.2) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 6px 14px !important;
   font-size: 0.82rem !important;
-  color: #0f172a !important;
-}
-
-.doctor-floating-badge {
-  background: rgba(255, 255, 255, 0.94) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-lg) !important;
-  box-shadow: var(--shadow-lg) !important;
-  padding: 12px 16px !important;
-}
-
-.doctor-floating-badge h5 {
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  color: #0f172a !important;
-}
-
-.floating-reg {
-  font-size: 0.72rem !important;
-  color: #065f46 !important;
   font-weight: 600 !important;
+  color: var(--primary) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
-/* --------------------------------------------------------------------------
-   5. Interactive Booking & Payment Wizard (entering-data.md)
-   -------------------------------------------------------------------------- */
-.booking-section,
-.appointment-section {
-  background: #f8fafc !important;
-  border-top: 1px solid #e2e8f0 !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 70px 0 !important;
+.pulse-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #10b981 !important;
+  box-shadow: 0 0 6px #10b981 !important;
 }
 
-.booking-wizard-card,
-.appointment-card {
-  background: #ffffff !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-2xl) !important;
-  box-shadow: var(--shadow-md) !important;
-  padding: 32px !important;
+.hero-title {
+  font-size: 3.25rem !important;
+  font-weight: 800 !important;
+  color: var(--apple-text-primary) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 1.25rem !important;
 }
 
-/* Form Inputs — Apple Field Design */
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="date"],
-input[type="number"],
-select,
-textarea {
-  font-family: inherit !important;
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: var(--radius-md) !important;
-  padding: 12px 16px !important;
-  font-size: 0.92rem !important;
-  color: #0f172a !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: none !important;
+/* NO tacky text gradients - pure Apple bold dark headline */
+.hero-title span {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--apple-text-primary) !important;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none !important;
-  border-color: #059669 !important;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15) !important;
+.hero-desc {
+  font-size: 1.15rem !important;
+  color: var(--apple-text-secondary) !important;
+  line-height: 1.65 !important;
+  margin-bottom: 2rem !important;
+  max-width: 580px !important;
 }
 
-/* --------------------------------------------------------------------------
-   6. Mobile Floating Action Bar (tab-bars.md & accessibility.md)
-   Guaranteed 48x48pt hit targets with Apple Liquid Glass feel
-   -------------------------------------------------------------------------- */
-.mobile-bottom-bar {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  bottom: 12px !important;
-  left: 12px !important;
-  right: 12px !important;
-  padding: 0 !important;
-  z-index: 50 !important;
+.hero-doctor-badge {
+  display: none !important; /* Remove redundant mini card inside hero text column */
 }
 
-.mobile-bar-inner {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-xl) !important;
-  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.14) !important;
-  padding: 6px !important;
+.hero-btns {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 2.5rem !important;
+}
+
+/* Hero Apple Bento Stats Bar */
+.hero-stats-row {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
-  gap: 4px !important;
+  background: #fbfbfd !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 1.25rem 1.5rem !important;
+  box-shadow: var(--shadow-xs) !important;
 }
 
-.m-bar-btn {
-  min-height: 48px !important;
+.stat-item {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 6px 4px !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+  border-right: 1px solid var(--apple-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 10px !important;
+}
+
+.stat-item:last-child {
+  border-right: none !important;
+}
+
+.stat-icon-wrap {
+  display: none !important; /* Clean, calm numbers without distracting circle icons */
+}
+
+.stat-item h3 {
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+  color: var(--apple-text-primary) !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 2px !important;
+}
+
+.stat-item p {
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  color: var(--apple-text-tertiary) !important;
+  margin: 0 !important;
+}
+
+/* Doctor Portrait Key Visual */
+.hero-media {
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.doctor-card-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  border-radius: var(--radius-2xl) !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.doctor-img-box {
+  width: 100% !important;
+  height: 480px !important;
+  overflow: hidden !important;
+  background: #f1f5f9 !important;
+}
+
+.doctor-img-box img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  transition: transform 0.4s var(--spring-timing) !important;
+}
+
+.doctor-card-wrapper:hover .doctor-img-box img {
+  transform: scale(1.02) !important;
+}
+
+/* Clean up cluttered overlapping stickers */
+.doctor-rating-pill,
+.doctor-exp-pill {
+  display: none !important;
+}
+
+/* Single pristine Liquid Glass metadata card at bottom of portrait */
+.doctor-floating-badge {
+  position: absolute !important;
+  bottom: 16px !important;
+  left: 16px !important;
+  right: 16px !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.floating-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 10px !important;
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1rem !important;
+  flex-shrink: 0 !important;
+}
+
+.floating-text h5 {
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  color: var(--apple-text-primary) !important;
+  margin: 0 0 2px 0 !important;
+}
+
+.floating-text p {
+  font-size: 0.78rem !important;
+  color: var(--apple-text-secondary) !important;
+  margin: 0 !important;
+}
+
+.floating-reg {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: var(--primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Sections, Titles & Apple Bento Grid (materials.md & layout.md)
+   -------------------------------------------------------------------------- */
+.section {
+  padding: 5rem 0 !important;
+  background: #ffffff !important;
+}
+
+.section-alt {
+  background: var(--apple-bg) !important;
+}
+
+.section-header {
+  text-align: center !important;
+  max-width: 680px !important;
+  margin: 0 auto 3.5rem !important;
+}
+
+.section-subtitle {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--primary) !important;
+  margin-bottom: 0.5rem !important;
+  display: inline-block !important;
+}
+
+.section-title {
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  color: var(--apple-text-primary) !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.section-desc {
+  font-size: 1.05rem !important;
+  color: var(--apple-text-secondary) !important;
+  line-height: 1.6 !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Service Cards (Apple HIG Bento Grid)
+   No rotating icons! Clean squircle cards with subtle elevation
+   -------------------------------------------------------------------------- */
+.services-filter-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  background: #e5e5ea !important;
+  padding: 4px !important;
+  border-radius: var(--radius-pill) !important;
+  max-width: 680px !important;
+  margin: 0 auto 2rem !important;
+  overflow-x: auto !important;
+}
+
+.filter-btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--apple-text-secondary) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  padding: 8px 18px !important;
+  border-radius: var(--radius-pill) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  white-space: nowrap !important;
+}
+
+.filter-btn:hover {
+  color: var(--apple-text-primary) !important;
+}
+
+.filter-btn.active {
+  background: #ffffff !important;
+  color: var(--apple-text-primary) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+.services-search-box {
+  max-width: 520px !important;
+  margin: 0 auto 3rem !important;
+  position: relative !important;
+}
+
+.services-search-box input {
+  width: 100% !important;
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border-strong) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 12px 20px 12px 44px !important;
+  font-size: 0.95rem !important;
+  color: var(--apple-text-primary) !important;
+  box-shadow: var(--shadow-xs) !important;
+  transition: var(--transition-smooth) !important;
+  outline: none !important;
+}
+
+.services-search-box input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15) !important;
+}
+
+.services-search-box i {
+  position: absolute !important;
+  left: 18px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--apple-text-tertiary) !important;
+  font-size: 0.95rem !important;
+}
+
+.services-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+.service-card {
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border) !important;
+  border-top: 1px solid var(--apple-border) !important; /* Removed tacky 3px stripe */
+  border-radius: var(--radius-xl) !important;
+  padding: 1.75rem 1.5rem !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+}
+
+.service-card:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(4, 120, 87, 0.3) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.service-badge {
+  position: absolute !important;
+  top: 1.25rem !important;
+  right: 1.25rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  background: rgba(4, 120, 87, 0.08) !important;
+  color: var(--primary) !important;
+  border: 1px solid rgba(4, 120, 87, 0.15) !important;
+  padding: 3px 8px !important;
+  border-radius: var(--radius-pill) !important;
+}
+
+.service-icon-box {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  background: rgba(4, 120, 87, 0.08) !important;
+  color: var(--primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+  transition: var(--transition-smooth) !important;
+}
+
+/* NO rotating icons on hover */
+.service-card:hover .service-icon-box {
+  transform: scale(1.05) !important;
+  background: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+.service-title {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: var(--apple-text-primary) !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.3 !important;
+}
+
+.service-desc {
+  font-size: 0.9rem !important;
+  color: var(--apple-text-secondary) !important;
+  margin-bottom: 1.5rem !important;
+  flex-grow: 1 !important;
+  line-height: 1.6 !important;
+}
+
+.service-action {
+  border-top: 1px solid var(--apple-border-hairline) !important;
+  padding-top: 1rem !important;
+}
+
+.service-btn-book {
+  background: transparent !important;
+  border: none !important;
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  transition: var(--transition-smooth) !important;
+  padding: 0 !important;
+}
+
+.service-btn-book:hover {
+  color: var(--primary-hover) !important;
+  transform: translateX(3px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. About & Features Bento Grid
+   -------------------------------------------------------------------------- */
+.about-grid {
+  display: grid !important;
+  grid-template-columns: 0.95fr 1.05fr !important;
+  gap: 4rem !important;
+  align-items: center !important;
+}
+
+.about-features {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1.25rem !important;
+  margin: 2rem 0 !important;
+}
+
+.about-feat-item {
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 1.25rem !important;
+  box-shadow: var(--shadow-xs) !important;
+  transition: var(--transition-smooth) !important;
+}
+
+.about-feat-item:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(4, 120, 87, 0.25) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.about-feat-icon {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  background: rgba(4, 120, 87, 0.08) !important;
+  color: var(--primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.about-feat-item h4 {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--apple-text-primary) !important;
+  margin-bottom: 4px !important;
+}
+
+.about-feat-item p {
+  font-size: 0.82rem !important;
+  color: var(--apple-text-secondary) !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Booking Section & Wizard (entering-data.md)
+   -------------------------------------------------------------------------- */
+.booking-section {
+  background: var(--apple-bg) !important;
+  padding: 5rem 0 !important;
+}
+
+.booking-card {
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-2xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+  padding: 2.5rem !important;
+  max-width: 820px !important;
+  margin: 0 auto !important;
+}
+
+/* Wizard Steps Indicator */
+.booking-steps-nav {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-bottom: 2.5rem !important;
+  position: relative !important;
+}
+
+.step-indicator {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: var(--apple-text-tertiary) !important;
+}
+
+.step-indicator.active {
+  color: var(--primary) !important;
+}
+
+.step-number {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: #f1f5f9 !important;
+  color: var(--apple-text-secondary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+
+.step-indicator.active .step-number {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+/* Inputs & Form Controls */
+.form-group label {
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: var(--apple-text-primary) !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100% !important;
+  background: #fbfbfd !important;
+  border: 1px solid var(--apple-border-strong) !important;
   border-radius: var(--radius-md) !important;
-  color: #334155 !important;
+  padding: 12px 16px !important;
+  font-size: 0.95rem !important;
+  color: var(--apple-text-primary) !important;
+  transition: var(--transition-smooth) !important;
+  outline: none !important;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15) !important;
+}
+
+/* Time Slot Selection Chips */
+.time-slots-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 6px !important;
+}
+
+.time-chip {
+  background: #f1f5f9 !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 8px 14px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: var(--apple-text-secondary) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.time-chip:hover {
+  background: #e2e8f0 !important;
+  color: var(--apple-text-primary) !important;
+}
+
+.time-chip.active {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.25) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Testimonials / Reviews (App Store Card Aesthetic)
+   -------------------------------------------------------------------------- */
+.reviews-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+.review-card {
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 1.75rem !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: var(--transition-smooth) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.review-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(4, 120, 87, 0.25) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.review-stars {
+  color: #f59e0b !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.review-text {
+  font-size: 0.95rem !important;
+  color: var(--apple-text-primary) !important;
+  line-height: 1.65 !important;
+  margin-bottom: 1.25rem !important;
+  font-style: normal !important;
+}
+
+.review-author {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  border-top: 1px solid var(--apple-border-hairline) !important;
+  padding-top: 1rem !important;
+}
+
+.review-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: #e2e8f0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--apple-text-secondary) !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+
+.review-meta h5 {
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: var(--apple-text-primary) !important;
+  margin: 0 !important;
+}
+
+.review-meta p {
+  font-size: 0.75rem !important;
+  color: var(--apple-text-tertiary) !important;
+  margin: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. 64 Districts Hub Section
+   -------------------------------------------------------------------------- */
+.nationwide-section {
+  background: #ffffff !important;
+}
+
+.districts-quick-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 1.25rem !important;
+}
+
+.district-card {
+  background: #ffffff !important;
+  border: 1px solid var(--apple-border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 1.25rem !important;
+  box-shadow: var(--shadow-xs) !important;
+  transition: var(--transition-smooth) !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+
+.district-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(4, 120, 87, 0.3) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. Apple Clean Dark Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background: #0f172a !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #94a3b8 !important;
+  padding: 5rem 0 3rem !important;
+}
+
+.footer-brand h3 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.footer-brand p {
+  color: #94a3b8 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+.footer-col h4 {
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.footer-links a {
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+  display: inline-block !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.88rem !important;
+}
+
+.footer-links a:hover {
+  color: #34d399 !important;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-top: 2rem !important;
+  margin-top: 3rem !important;
+  font-size: 0.82rem !important;
+  color: #64748b !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  text-align: center !important;
+}
+
+.footer-bottom a {
+  color: #34d399 !important;
+  font-weight: 600 !important;
+}
+
+/* --------------------------------------------------------------------------
+   13. Floating Action Controls & Mobile Bottom Dock
+   -------------------------------------------------------------------------- */
+.floating-whatsapp {
+  background: #25d366 !important;
+  color: #ffffff !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 12px 22px !important;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 99 !important;
   text-decoration: none !important;
   transition: var(--transition-smooth) !important;
 }
 
-.m-bar-btn i {
-  font-size: 1.15rem !important;
-  margin-bottom: 2px !important;
-}
-
-.m-bar-btn span {
-  font-size: 0.72rem !important;
-  font-weight: 600 !important;
-}
-
-.m-bar-btn.m-btn-book {
-  background: #059669 !important;
-  color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3) !important;
-}
-
-.m-bar-btn.m-btn-book:active {
-  transform: scale(0.96) !important;
+.floating-whatsapp:hover {
+  background: #20ba5a !important;
+  transform: translateY(-2px) scale(1.02) !important;
 }
 
 /* --------------------------------------------------------------------------
-   7. Mobile Navigation Drawer (sheets.md)
+   14. Responsive Layout Breakpoints
    -------------------------------------------------------------------------- */
-.mobile-drawer {
-  background: rgba(255, 255, 255, 0.96) !important;
-  backdrop-filter: blur(28px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-  border-left: 1px solid rgba(226, 232, 240, 0.8) !important;
-  box-shadow: -15px 0 45px rgba(15, 23, 42, 0.1) !important;
+@media (max-width: 991px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+    text-align: center !important;
+  }
+
+  .hero-header-badges {
+    justify-content: center !important;
+  }
+
+  .hero-title {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-desc {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-btns {
+    justify-content: center !important;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
 }
 
-.drawer-header {
-  background: #f8fafc !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 16px !important;
-}
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.1rem !important;
+  }
 
-.drawer-nav-item a {
-  min-height: 44px !important;
-  display: flex !important;
-  align-items: center !important;
-  padding: 10px 16px !important;
-  font-weight: 500 !important;
-  color: #1e293b !important;
-  border-radius: var(--radius-sm) !important;
-}
+  .hero-stats-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
 
-.drawer-nav-item a:hover,
-.drawer-nav-item a.active {
-  background: rgba(5, 150, 105, 0.08) !important;
-  color: #059669 !important;
-}
+  .stat-item {
+    border-right: none !important;
+  }
 
-/* --------------------------------------------------------------------------
-   8. Footer Styling (High Contrast, Clean Layout)
-   -------------------------------------------------------------------------- */
-.footer {
-  background: #f1f5f9 !important;
-  border-top: 1px solid #e2e8f0 !important;
-  color: #475569 !important;
-  padding: 60px 0 30px !important;
-}
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(2) {
+    border-bottom: 1px solid var(--apple-border) !important;
+    padding-bottom: 0.75rem !important;
+  }
 
-.footer-brand h3 {
-  color: #0f172a !important;
-  font-weight: 700 !important;
-}
+  .about-features {
+    grid-template-columns: 1fr !important;
+  }
 
-.footer-brand p {
-  color: #475569 !important;
-  font-size: 0.9rem !important;
-}
+  .btn {
+    width: 100% !important;
+  }
 
-.footer-col h4 {
-  color: #0f172a !important;
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  margin-bottom: 16px !important;
-}
-
-.footer-links a {
-  color: #475569 !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease !important;
-}
-
-.footer-links a:hover {
-  color: #059669 !important;
-}
-
-.footer-bottom {
-  border-top: 1px solid #cbd5e1 !important;
-  padding-top: 24px !important;
-  margin-top: 40px !important;
-  font-size: 0.82rem !important;
-  color: #64748b !important;
-}
-
-.footer-bottom a {
-  color: #059669 !important;
-  font-weight: 600 !important;
+  .floating-whatsapp {
+    bottom: 16px !important;
+    right: 16px !important;
+    padding: 10px 16px !important;
+    font-size: 0.85rem !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
-   9. Verification Ticket Modal (Apple Sheet Conventions)
-   -------------------------------------------------------------------------- */
-.ticket-modal-card {
-  background: #ffffff !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  border-radius: var(--radius-2xl) !important;
-  box-shadow: var(--shadow-xl) !important;
-  overflow: hidden !important;
-}
-
-.ticket-header-gradient {
-  background: #0f172a !important;
-  color: #ffffff !important;
-}
-
-.ticket-token-display {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: var(--radius-lg) !important;
-}
-
-/* --------------------------------------------------------------------------
-   10. Reduced Motion Support (accessibility.md)
+   15. Accessibility & Reduced Motion (accessibility.md)
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -47,28 +47,19 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Doctor Credentials Apple Card */}
-            <div className="p-4 sm:p-5 rounded-2xl apple-card flex items-center gap-4 max-w-xl">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-800 shrink-0">
-                <Award className="w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
+            {/* Apple High-Trust Clinical Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-700 font-medium">
+              <div className="flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-2.5 rounded-xl shadow-xs">
+                <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" aria-hidden="true" />
+                <span>মাইন্ড-মেথড কেস অ্যানালাইসিস</span>
               </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <h2 className="text-base sm:text-lg font-bold text-slate-900">
-                    {clinicConfig.doctorNameBn}
-                  </h2>
-                  <span className="px-2 py-0.5 text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-200 rounded-md">
-                    DHMS ঢাকা
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 font-medium">
-                  {clinicConfig.clinicNameBn} • উত্তরা চেম্বার ও ৬৪ জেলায় অনলাইন সেবা
-                </p>
-                <p className="text-xs text-emerald-800 font-semibold flex items-center gap-1">
-                  <span>পরামর্শ ফি: ৳{clinicConfig.consultationFee}</span>
-                  <span className="text-slate-400">•</span>
-                  <span className="text-slate-600 font-normal">ফি প্রদানের পর হোয়াটসঅ্যাপে পরামর্শ শুরু</span>
-                </p>
+              <div className="flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-2.5 rounded-xl shadow-xs">
+                <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" aria-hidden="true" />
+                <span>১০০% খাঁটি জার্মান ওষুধ</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-2.5 rounded-xl shadow-xs">
+                <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" aria-hidden="true" />
+                <span>৬৪ জেলায় হোম ডেলিভারি</span>
               </div>
             </div>
 
