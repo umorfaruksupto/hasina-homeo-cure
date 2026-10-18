@@ -558,11 +558,30 @@
                     </select>
                   </div>
 
-                  <div class="form-group">
-                    <label for="patient-problem">প্রধান স্বাস্থ্য সমস্যা *</label>
-                    <select id="patient-problem" required>
+                  <div class="form-group full">
+                    <label for="patient-problem">প্রধান স্বাস্থ্য সমস্যা নির্বাচন করুন *</label>
+                    <select id="patient-problem" onchange="handleProblemSelectChange(this.value)">
                       <!-- Dynamically populated from data.js -->
                     </select>
+                  </div>
+
+                  <!-- Custom Problem Input for Unlisted Conditions -->
+                  <div class="form-group full" id="custom-problem-wrap" style="margin-top: 0.85rem;">
+                    <label for="custom-problem" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.88rem; font-weight: 600; color: var(--apple-text-primary, #1d1d1f);">
+                      <span>
+                        <i class="fa-solid fa-pen-to-square" style="color: var(--primary, #047857);"></i> তালিকায় সমস্যা না থাকলে বা বিস্তারিত এখানে লিখুন:
+                      </span>
+                      <small style="color: var(--apple-text-tertiary, #86868b); font-weight: 500;">(ঐচ্ছিক)</small>
+                    </label>
+                    <textarea
+                      id="custom-problem"
+                      rows="2"
+                      placeholder="যেমন: পেটে গ্যাস, ফ্যাটি লিভার, প্রস্রাবে জ্বালাপোড়া, চুল পড়া বা যেকোনো শারীরিক/মানসিক কষ্টের কথা নিজের ভাষায় লিখুন..."
+                      style="width: 100%; border-radius: var(--radius-md, 14px); padding: 10px 14px; font-family: inherit; font-size: 0.92rem; border: 1px solid var(--apple-border-strong, rgba(0,0,0,0.14)); background: #fbfbfd; line-height: 1.5; outline: none; transition: var(--transition-smooth, all 0.25s ease); resize: vertical; min-height: 52px;"
+                    ></textarea>
+                    <small style="color: var(--apple-text-secondary, #6e6e73); font-size: 0.78rem; display: block; margin-top: 4px;">
+                      💡 আপনার সমস্যা ড্রপডাউনে না পেলেও কোনো চিন্তা নেই—এখানে লিখে জানালে ডাক্তার সরাসরি পর্যালোচনা করে সঠিক ওষুধ দেবেন।
+                    </small>
                   </div>
                 </div>
 

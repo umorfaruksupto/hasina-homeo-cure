@@ -228,6 +228,18 @@ document.addEventListener("DOMContentLoaded", () => {
     goToBookingStep(1);
   };
 
+  // Handle custom problem selection trigger
+  window.handleProblemSelectChange = function(val) {
+    const customInput = document.getElementById("custom-problem");
+    if (val === "other" && customInput) {
+      customInput.focus();
+      customInput.style.borderColor = "var(--primary, #047857)";
+      customInput.placeholder = currentLang === "bn"
+        ? "আপনার সমস্যাটির বিস্তারিত বিবরণ এখানে লিখুন..."
+        : "Please describe your health condition in detail here...";
+    }
+  };
+
   // Render Clinic Gallery with Lightbox Hook
   function renderGallery() {
     if (!galleryGrid) return;
@@ -327,7 +339,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (step === 2) {
       const name = document.getElementById("patient-name").value.trim();
       const phone = document.getElementById("patient-phone").value.trim();
-      const problem = document.getElementById("patient-problem").value;
+      const problemSelect = document.getElementById("patient-problem");
+      const selectedProblem = problemSelect ? problemSelect.value : "";
+      const customProblemEl = document.getElementById("custom-problem");
+      const customProblem = customProblemEl ? customProblemEl.value.trim() : "";
 
       if (!name) {
         alert(currentLang === "bn" ? "অনুগ্রহ করে রোগীর নাম লিখুন।" : "Please enter patient name.");
@@ -339,9 +354,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("patient-phone").focus();
         return;
       }
-      if (!problem) {
-        alert(currentLang === "bn" ? "অনুগ্রহ করে সমস্যার ধরণ নির্বাচন করুন।" : "Please select your health condition.");
-        document.getElementById("patient-problem").focus();
+      if (!selectedProblem && !customProblem) {
+        alert(currentLang === "bn" ? "অনুগ্রহ করে তালিকা থেকে সমস্যা নির্বাচন করুন অথবা নিচের ঘরে আপনার সমস্যাটি লিখে জানান।" : "Please select or type your health condition.");
+        if (customProblemEl) customProblemEl.focus();
+        else if (problemSelect) problemSelect.focus();
         return;
       }
 
@@ -350,7 +366,20 @@ document.addEventListener("DOMContentLoaded", () => {
       bookingState.age = document.getElementById("patient-age").value || "N/A";
       bookingState.gender = document.getElementById("patient-gender").value;
       bookingState.consultType = document.getElementById("consult-type").value;
-      bookingState.problem = document.getElementById("patient-problem").options[document.getElementById("patient-problem").selectedIndex].text;
+
+      const selectedOptionText = (problemSelect && problemSelect.selectedIndex >= 0)
+        ? problemSelect.options[problemSelect.selectedIndex].text
+        : "";
+
+      if (customProblem) {
+        if (!selectedProblem || selectedProblem === "other") {
+          bookingState.problem = customProblem;
+        } else {
+          bookingState.problem = `${selectedOptionText} (${customProblem})`;
+        }
+      } else {
+        bookingState.problem = selectedOptionText;
+      }
     }
 
     if (step === 3) {

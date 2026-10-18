@@ -52,6 +52,7 @@ export default function PaymentBookingForm() {
   const [formError, setFormError] = useState<string | null>(null);
   const [ticketData, setTicketData] = useState<BookingTicketData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customProblem, setCustomProblem] = useState('');
 
   // Form State
   const [formData, setFormData] = useState({
@@ -101,6 +102,13 @@ export default function PaymentBookingForm() {
       setFormError('অনুগ্রহ করে সঠিক ১১ ডিজিটের মোবাইল নম্বর লিখুন।');
       return;
     }
+
+    if (customProblem.trim()) {
+      const isOther = formData.problem.includes('অন্যান্য');
+      const resolvedProblem = isOther ? customProblem.trim() : `${formData.problem} (${customProblem.trim()})`;
+      setFormData(prev => ({ ...prev, problem: resolvedProblem }));
+    }
+
     setStep(2);
   };
 
@@ -385,8 +393,8 @@ export default function PaymentBookingForm() {
                   </div>
                 </div>
 
-                <div className="sm:col-span-2">
-                  <label className="block text-xs font-bold text-slate-700 mb-2">
+                <div className="sm:col-span-2 space-y-3">
+                  <label className="block text-xs font-bold text-slate-700">
                     মূল সমস্যা বা রোগ নির্বাচন করুন *
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -394,7 +402,13 @@ export default function PaymentBookingForm() {
                       <button
                         key={prob}
                         type="button"
-                        onClick={() => setFormData({ ...formData, problem: prob })}
+                        onClick={() => {
+                          setFormData({ ...formData, problem: prob });
+                          if (prob.includes('অন্যান্য')) {
+                            const inputEl = document.getElementById('custom-problem-next');
+                            inputEl?.focus();
+                          }
+                        }}
                         className={`min-h-[40px] px-3.5 py-2 rounded-xl text-xs font-medium transition-all ${
                           formData.problem === prob
                             ? 'bg-emerald-700 text-white shadow-sm'
@@ -404,6 +418,28 @@ export default function PaymentBookingForm() {
                         {prob}
                       </button>
                     ))}
+                  </div>
+
+                  {/* Custom Problem Input for unlisted conditions */}
+                  <div className="pt-2">
+                    <label htmlFor="custom-problem-next" className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <span className="text-emerald-700">✍️</span>
+                        <span>তালিকায় সমস্যা না থাকলে বা বিস্তারিত এখানে লিখুন:</span>
+                      </span>
+                      <span className="text-[11px] text-slate-400 font-normal">(ঐচ্ছিক)</span>
+                    </label>
+                    <textarea
+                      id="custom-problem-next"
+                      rows={2}
+                      value={customProblem}
+                      onChange={(e) => setCustomProblem(e.target.value)}
+                      placeholder="যেমন: ফ্যাটি লিভার, পেটে গ্যাস ও বুক জ্বালাপোড়া, ঘনঘন প্রস্রাবের বেগ, অনিদ্রা বা অন্য যেকোনো শারীরিক সমস্যা..."
+                      className="w-full rounded-xl border border-slate-300 p-3 text-xs sm:text-sm apple-input text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+                    />
+                    <p className="text-[11px] text-slate-500 mt-1">
+                      💡 আপনার সমস্যা ওপরের তালিকায় না থাকলেও সমস্যা নেই—নিজের ভাষায় এখানে লিখে জানান।
+                    </p>
                   </div>
                 </div>
               </div>
