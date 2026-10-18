@@ -1,8 +1,12 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
+import Services from '@/components/Services';
+import PaymentBookingForm from '@/components/PaymentBookingForm';
+import Reviews from '@/components/Reviews';
+import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
 import MobileFloatingDock from '@/components/MobileFloatingDock';
 import { districtsData } from '@/data/districtsData';
@@ -12,6 +16,18 @@ const divisions = ['সকল বিভাগ', 'ঢাকা', 'চট্টগ
 export default function DistrictsPage() {
   const [selectedDivision, setSelectedDivision] = useState('সকল বিভাগ');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash;
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  }, []);
 
   const filteredDistricts = useMemo(() => {
     return districtsData.filter(d => {
@@ -92,7 +108,7 @@ export default function DistrictsPage() {
         </section>
 
         {/* District Grid */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="districts-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-5 text-xs text-slate-600 font-medium">
             <span>ফলাফল: <strong className="text-emerald-700 font-bold">{filteredDistricts.length}</strong> টি জেলা প্রদর্শিত</span>
             <span>ডেলিভারি পার্টনার: এস এ পরিবহন, সুন্দরবন, স্টিডফাস্ট</span>
@@ -165,6 +181,17 @@ export default function DistrictsPage() {
           )}
         </section>
 
+        {/* Treatments / Services */}
+        <Services />
+
+        {/* Interactive Payment & Appointment Booking Section */}
+        <PaymentBookingForm />
+
+        {/* Real Patient Testimonials */}
+        <Reviews />
+
+        {/* FAQ Section */}
+        <FaqSection />
       </main>
 
       <Footer />

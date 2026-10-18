@@ -2,11 +2,20 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Phone, CalendarCheck, Menu, X, HeartPulse, ShieldCheck, MapPin } from 'lucide-react';
 import { clinicConfig } from '@/data/clinicData';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const hasOnPageSections = pathname === '/' || pathname === '/districts';
+
+  const servicesHref = hasOnPageSections ? '#services' : '/#services';
+  const districtsHref = pathname === '/districts' ? '#districts-grid' : '/districts';
+  const reviewsHref = hasOnPageSections ? '#reviews' : '/#reviews';
+  const faqHref = hasOnPageSections ? '#faq' : '/#faq';
+  const bookingHref = hasOnPageSections ? '#booking' : '/#booking';
 
   return (
     <>
@@ -77,30 +86,41 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2" aria-label="মূল নেভিগেশন">
+            <Link
+              href="/"
+              className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 ${
+                pathname === '/' ? 'text-emerald-800 font-bold bg-emerald-50/80' : 'text-slate-700 hover:text-emerald-800 hover:bg-slate-100/70'
+              }`}
+            >
+              হোম
+            </Link>
+
             <a
-              href="#services"
+              href={servicesHref}
               className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:text-emerald-800 hover:bg-slate-100/70 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
               চিকিৎসাসমূহ
             </a>
 
             <Link
-              href="/districts"
-              className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:text-emerald-800 hover:bg-slate-100/70 transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+              href={districtsHref}
+              className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 ${
+                pathname === '/districts' ? 'text-emerald-800 font-bold bg-emerald-50/80' : 'text-slate-700 hover:text-emerald-800 hover:bg-slate-100/70'
+              }`}
             >
               <MapPin className="w-4 h-4 text-emerald-700" aria-hidden="true" />
               <span>৬৪ জেলা ডেলিভারি</span>
             </Link>
 
             <a
-              href="#reviews"
+              href={reviewsHref}
               className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:text-emerald-800 hover:bg-slate-100/70 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
               রোগীদের রিভিউ
             </a>
 
             <a
-              href="#faq"
+              href={faqHref}
               className="px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:text-emerald-800 hover:bg-slate-100/70 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
               প্রশ্নোত্তর (FAQ)
@@ -110,7 +130,7 @@ export default function Navbar() {
           {/* Right Action Button & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <a
-              href="#booking"
+              href={bookingHref}
               className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl apple-btn-prominent font-semibold text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
               <CalendarCheck className="w-4 h-4 text-white" aria-hidden="true" />

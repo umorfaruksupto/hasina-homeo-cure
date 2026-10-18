@@ -142,23 +142,28 @@ export default function Footer() {
 
         </div>
 
+        {/* Built by luminexlabs.io - Large Prominent Showcase Badge */}
+        <div className="pt-10 pb-6 flex flex-col items-center justify-center text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-white border-2 border-emerald-500/40 shadow-md hover:shadow-lg hover:border-emerald-600 transition-all duration-300 group">
+            <span className="text-base sm:text-lg font-semibold text-slate-700">Built by</span>
+            <a
+              href="https://luminexlabs.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xl sm:text-2xl font-black tracking-tight text-emerald-700 hover:text-emerald-900 flex items-center gap-2 transition-colors"
+            >
+              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+              luminexlabs.io
+              <span className="text-lg text-emerald-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">↗</span>
+            </a>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="pt-4 border-t border-slate-200/80 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>© {new Date().getFullYear()} হাসিনা হোমিও কিউর (Hasina Homeo Cure). সর্বস্বত্ব সংরক্ষিত।</p>
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center md:text-right font-medium text-slate-600">
+          <div className="text-center md:text-right font-medium text-slate-600">
             <span>বোর্ড সার্টিফাইড হোমিওপ্যাথিক চিকিৎসা সেবা • ঢাকা ও সমগ্র বাংলাদেশ</span>
-            <span className="hidden sm:inline text-slate-300">•</span>
-            <span>
-              Built by{' '}
-              <a
-                href="https://luminexlabs.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-emerald-800 hover:text-emerald-950 hover:underline transition-colors"
-              >
-                luminexlabs.io
-              </a>
-            </span>
           </div>
         </div>
       </div>
